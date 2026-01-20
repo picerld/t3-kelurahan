@@ -23,16 +23,16 @@ const Toaster = ({ ...props }: ToasterProps) => {
         loading: <Loader2Icon className="size-5 animate-spin" />,
       }}
       toastOptions={{
-        style: {
-          background: '#110E24',
-          border: '1px solid #23203A',
-          borderRadius: '16px',
-          color: '#FFFFFF',
-          padding: '16px',
-          fontSize: '14px',
-          fontWeight: '600',
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
-        },
+        // style: {
+        //   background: '#110E24',
+        //   border: '1px solid #23203A',
+        //   borderRadius: '16px',
+        //   color: '#FFFFFF',
+        //   padding: '16px',
+        //   fontSize: '14px',
+        //   fontWeight: '600',
+        //   boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+        // },
         classNames: {
           toast: 'group toast group-[.toaster]:bg-[#110E24] group-[.toaster]:text-white group-[.toaster]:border-[#23203A] group-[.toaster]:shadow-2xl',
           description: 'group-[.toast]:text-[#89869A]',
