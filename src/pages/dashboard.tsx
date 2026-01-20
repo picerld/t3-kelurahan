@@ -24,6 +24,9 @@ import {
   Crown,
   Smartphone,
   User,
+  LayoutDashboard,
+  MessageCircle,
+  ContactRound,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -33,6 +36,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { authClient } from "@/server/better-auth/client";
+import { HeadMetaData } from "@/components/meta/HeadMetaData";
 
 type SessionUser = {
   id?: string;
@@ -165,11 +169,13 @@ const KreatopDashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#07041B] text-white">
+      <HeadMetaData title="Dashboard Kelurahan" pathName="/dashboard" />
+
       <div className="flex">
         {/* Sidebar */}
         <aside className="fixed top-0 left-0 h-screen w-[280px] border-r border-[#23203A] px-[30px] pt-[50px] pb-[30px] flex flex-col gap-[50px]">
-          <div className="flex justify-center">
-            <div className="text-2xl font-bold text-blue-500">KREATOP</div>
+          <div className="flex justify-center items-center gap-2">
+            <div className="text-3xl font-bold text-foreground">Kelurahan</div>
           </div>
 
           <nav className="flex-1 flex flex-col justify-between overflow-y-auto hide-scrollbar">
@@ -177,61 +183,39 @@ const KreatopDashboard = () => {
               <div className="flex flex-col gap-4">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start gap-3 bg-[#312ECB] hover:bg-[#312ECB]/90 h-auto py-[10px] px-4 rounded-xl"
+                  className="w-full text-base justify-start gap-3 bg-[#312ECB] hover:bg-[#312ECB]/90 h-auto py-[11px] px-4 rounded-xl"
                 >
-                  <Grid3x3 className="h-6 w-6" />
+                  <LayoutDashboard className="size-5" />
                   <span className="font-semibold">Overview</span>
                 </Button>
 
                 <Button
                   variant="ghost"
-                  className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl"
+                  className="w-full text-base justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[11px] px-4 rounded-xl"
                 >
-                  <MessageSquare className="h-6 w-6" />
+                  <MessageCircle className="size-5" />
                   <span className="font-semibold">Messages</span>
                   <Badge className="ml-auto bg-[#007AFF] hover:bg-[#007AFF] text-white text-[10px] h-6 w-6 rounded-full p-0 flex items-center justify-center">
                     19
                   </Badge>
-                </Button>
-
-                <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl">
-                  <Users className="h-6 w-6" />
-                  <span className="font-semibold">Clients</span>
-                </Button>
-
-                <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl">
-                  <Calendar className="h-6 w-6" />
-                  <span className="font-semibold">Content Planner</span>
-                </Button>
-
-                <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl">
-                  <BarChart3 className="h-6 w-6" />
-                  <span className="font-semibold">Bot Analytics</span>
-                  <Badge className="ml-auto bg-[#007AFF] hover:bg-[#007AFF] text-white text-[10px] px-2 rounded-lg">NEW</Badge>
-                </Button>
-
-                <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl">
-                  <Star className="h-6 w-6" />
-                  <span className="font-semibold">Testimonials</span>
                 </Button>
               </div>
 
               <hr className="border-[#23203A]" />
 
               <div className="flex flex-col gap-4">
-                <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl">
-                  <Settings className="h-6 w-6" />
+                <Button variant="ghost" className="w-full text-base justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[11px] px-4 rounded-xl">
+                  <Settings className="size-6" />
                   <span className="font-semibold">Settings</span>
                 </Button>
 
-                {/* ✅ Logout wired to Better Auth */}
                 <Button
                   variant="ghost"
-                  className="w-full justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[10px] px-4 rounded-xl"
+                  className="w-full text-base justify-start gap-3 hover:bg-[#312ECB]/20 h-auto py-[11px] px-4 rounded-xl"
                   onClick={handleLogout}
                   disabled={logoutLoading}
                 >
-                  <LogOut className="h-6 w-6" />
+                  <LogOut className="size-6" />
                   <span className="font-semibold">{logoutLoading ? "Logging out..." : "Logout"}</span>
                 </Button>
               </div>
@@ -303,7 +287,7 @@ const KreatopDashboard = () => {
                 <div className="grid grid-cols-3 gap-5">
                   {stats.map((stat, index) => (
                     <Card key={index} className="bg-[#110E24] border-[#23203A] rounded-2xl">
-                      <CardContent className="p-5 flex flex-col gap-5">
+                      <CardContent className="px-5 flex flex-col gap-5">
                         <div className="flex items-center gap-3">
                           <div className={`flex h-[50px] w-[50px] rounded-full items-center justify-center ${stat.color}`}>
                             <stat.icon className="h-6 w-6" />
