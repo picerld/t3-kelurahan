@@ -30,10 +30,10 @@ export function MainNavbar({ withHeader, headerTitle, headerSubtitle }: MainNavb
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-[14px]">
           <Button variant="outline" size="icon" className="h-[50px] w-[50px] rounded-full border-border hover:bg-accent">
-            <Search className="h-6 w-6" />
+            <Search className="h-4! w-4!" />
           </Button>
           <Button variant="outline" size="icon" className="h-[50px] w-[50px] rounded-full border-border hover:bg-accent">
-            <Bell className="h-6 w-6" />
+            <Bell className="h-4! w-4!" />
           </Button>
           <ModeToggle variant="outline" />
         </div>

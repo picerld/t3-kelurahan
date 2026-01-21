@@ -11,7 +11,7 @@ type AuthContainerProps = {
 export const AuthContainer: React.FC<AuthContainerProps> = ({ mode, children }) => {
   const isSignUp = mode === "signup";
 
-  const leftHeading = isSignUp ? "Start Your Journey" : "Welcome Back!";
+  const leftHeading = isSignUp ? "Start Your Journey" : "Kelurahan Lorem";
   const leftDesc = isSignUp
     ? "Join thousands of creators who trust Kelurahan to grow their business and reach."
     : "Track your growth, manage clients, and optimize your content performance with powerful analytics.";
@@ -26,7 +26,7 @@ export const AuthContainer: React.FC<AuthContainerProps> = ({ mode, children }) 
       <Card className="w-full max-w-[1000px] rounded-[32px] overflow-hidden shadow-2xl border-none py-0">
         <CardContent className="p-0">
           <div className="grid md:grid-cols-2 min-h-[600px]">
-            <div className="bg-primary p-12 flex flex-col justify-between overflow-hidden relative">
+            <div className="bg-primary/90 p-12 flex flex-col justify-between overflow-hidden relative">
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
                 <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
@@ -42,7 +42,7 @@ export const AuthContainer: React.FC<AuthContainerProps> = ({ mode, children }) 
 
                 <div className="space-y-4">
                   <h2 className="text-4xl font-bold text-primary-foreground leading-tight">{leftHeading}</h2>
-                  <p className="text-lg text-primary-foreground/90 leading-relaxed">{leftDesc}</p>
+                  <p className="text-base text-primary-foreground/90 leading-relaxed">{leftDesc}</p>
                 </div>
               </div>
 
@@ -66,7 +66,7 @@ export const AuthContainer: React.FC<AuthContainerProps> = ({ mode, children }) 
               <div className="w-full max-w-md mx-auto">
                 <div className="mb-8 flex items-start justify-between">
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-4xl font-bold text-card-foreground mb-2">{rightHeading}</h3>
+                    <h3 className="text-5xl font-bold text-card-foreground mb-2">{rightHeading} 👋</h3>
                     <p className="text-muted-foreground">{rightDesc}</p>
                   </div>
                   <ModeToggle />
