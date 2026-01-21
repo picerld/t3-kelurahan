@@ -172,7 +172,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\gawe\\freelance\\t3-kelurahan\\generated\\prisma",
+      "value": "D:\\Personal\\t3-kelurahan\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -186,7 +186,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\gawe\\freelance\\t3-kelurahan\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Personal\\t3-kelurahan\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -200,7 +200,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

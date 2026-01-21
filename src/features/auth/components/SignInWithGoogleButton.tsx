@@ -9,8 +9,8 @@ export const SignInWithGoogleButton = () => {
     return (
         <Button
             type="button"
-            variant="outline"
-            className="h-12 border-[#23203A] bg-[#07041B] hover:bg-[#23203A] text-white rounded-xl"
+            variant="accent"
+            className="h-12 rounded-xl"
             onClick={handleGoogleSignIn}
         >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
