@@ -66,7 +66,7 @@ export const AuthContainer: React.FC<AuthContainerProps> = ({ mode, children }) 
               <div className="w-full max-w-md mx-auto">
                 <div className="mb-8 flex items-start justify-between">
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-5xl font-bold text-card-foreground mb-2">{rightHeading} 👋</h3>
+                    <h3 className="text-4xl font-bold text-card-foreground mb-2">{rightHeading} 👋</h3>
                     <p className="text-muted-foreground">{rightDesc}</p>
                   </div>
                   <ModeToggle />

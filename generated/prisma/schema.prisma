@@ -77,3 +77,139 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+// MODEL PENDUDUK
+
+enum Gender {
+  L
+  P
+}
+
+enum Religion {
+  ISLAM
+  KRISTEN
+  KATOLIK
+  HINDU
+  BUDDHA
+  KONGHUCU
+  KEPERCAYAAN
+  LAINNYA
+}
+
+enum MaritalStatus {
+  BELUM_KAWIN
+  KAWIN
+  CERAI_HIDUP
+  CERAI_MATI
+}
+
+enum FamilyRole {
+  KEPALA_KELUARGA
+  SUAMI
+  ISTRI
+  ANAK
+  MENANTU
+  CUCU
+  ORANG_TUA
+  MERTUA
+  FAMILI_LAIN
+  PEMBANTU
+  LAINNYA
+}
+
+enum Education {
+  TIDAK_SEKOLAH
+  SD
+  SMP
+  SMA
+  D1
+  D2
+  D3
+  S1
+  S2
+  S3
+  LAINNYA
+}
+
+enum Occupation {
+  BELUM_TIDAK_BEKERJA
+  PELAJAR_MAHASISWA
+  IRT
+  PNS
+  TNI
+  POLRI
+  KARYAWAN_SWASTA
+  WIRASWASTA
+  PETANI
+  NELAYAN
+  BURUH
+  PENSIUNAN
+  LAINNYA
+}
+
+model Citizen {
+  id               String         @id @default(cuid())
+  nik              String         @unique
+  nama             String
+  jenisKelamin     Gender
+  tempatLahir      String?
+  tanggalLahir     DateTime?
+  agama            Religion?
+  pendidikan       Education?
+  pekerjaan        Occupation?
+  statusPerkawinan MaritalStatus?
+  kewarganegaraan  String?
+  noHp             String?
+  email            String?
+
+  alamatId String?
+  alamat   Address? @relation(fields: [alamatId], references: [id], onDelete: SetNull)
+
+  keluargaId          String?
+  keluarga            Family?     @relation(fields: [keluargaId], references: [id], onDelete: SetNull)
+  statusDalamKeluarga FamilyRole?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([keluargaId])
+  @@index([alamatId])
+  @@map("penduduk")
+}
+
+model Family {
+  id         String    @id @default(cuid())
+  noKK       String    @unique
+  kepalaNIK  String?
+  namaKepala String?
+  alamatId   String?
+  alamat     Address?  @relation(fields: [alamatId], references: [id], onDelete: SetNull)
+  anggota    Citizen[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([alamatId])
+  @@map("keluarga")
+}
+
+model Address {
+  id        String  @id @default(cuid())
+  alamat    String
+  rt        String?
+  rw        String?
+  kelurahan String?
+  kecamatan String?
+  kabupaten String?
+  provinsi  String?
+  kodePos   String?
+
+  penduduk Citizen[]
+  keluarga Family[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([kelurahan, kecamatan])
+  @@map("alamat")
+}

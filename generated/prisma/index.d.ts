@@ -33,6 +33,135 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  * 
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
+/**
+ * Model Citizen
+ * 
+ */
+export type Citizen = $Result.DefaultSelection<Prisma.$CitizenPayload>
+/**
+ * Model Family
+ * 
+ */
+export type Family = $Result.DefaultSelection<Prisma.$FamilyPayload>
+/**
+ * Model Address
+ * 
+ */
+export type Address = $Result.DefaultSelection<Prisma.$AddressPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Gender: {
+  L: 'L',
+  P: 'P'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
+export const Religion: {
+  ISLAM: 'ISLAM',
+  KRISTEN: 'KRISTEN',
+  KATOLIK: 'KATOLIK',
+  HINDU: 'HINDU',
+  BUDDHA: 'BUDDHA',
+  KONGHUCU: 'KONGHUCU',
+  KEPERCAYAAN: 'KEPERCAYAAN',
+  LAINNYA: 'LAINNYA'
+};
+
+export type Religion = (typeof Religion)[keyof typeof Religion]
+
+
+export const MaritalStatus: {
+  BELUM_KAWIN: 'BELUM_KAWIN',
+  KAWIN: 'KAWIN',
+  CERAI_HIDUP: 'CERAI_HIDUP',
+  CERAI_MATI: 'CERAI_MATI'
+};
+
+export type MaritalStatus = (typeof MaritalStatus)[keyof typeof MaritalStatus]
+
+
+export const FamilyRole: {
+  KEPALA_KELUARGA: 'KEPALA_KELUARGA',
+  SUAMI: 'SUAMI',
+  ISTRI: 'ISTRI',
+  ANAK: 'ANAK',
+  MENANTU: 'MENANTU',
+  CUCU: 'CUCU',
+  ORANG_TUA: 'ORANG_TUA',
+  MERTUA: 'MERTUA',
+  FAMILI_LAIN: 'FAMILI_LAIN',
+  PEMBANTU: 'PEMBANTU',
+  LAINNYA: 'LAINNYA'
+};
+
+export type FamilyRole = (typeof FamilyRole)[keyof typeof FamilyRole]
+
+
+export const Education: {
+  TIDAK_SEKOLAH: 'TIDAK_SEKOLAH',
+  SD: 'SD',
+  SMP: 'SMP',
+  SMA: 'SMA',
+  D1: 'D1',
+  D2: 'D2',
+  D3: 'D3',
+  S1: 'S1',
+  S2: 'S2',
+  S3: 'S3',
+  LAINNYA: 'LAINNYA'
+};
+
+export type Education = (typeof Education)[keyof typeof Education]
+
+
+export const Occupation: {
+  BELUM_TIDAK_BEKERJA: 'BELUM_TIDAK_BEKERJA',
+  PELAJAR_MAHASISWA: 'PELAJAR_MAHASISWA',
+  IRT: 'IRT',
+  PNS: 'PNS',
+  TNI: 'TNI',
+  POLRI: 'POLRI',
+  KARYAWAN_SWASTA: 'KARYAWAN_SWASTA',
+  WIRASWASTA: 'WIRASWASTA',
+  PETANI: 'PETANI',
+  NELAYAN: 'NELAYAN',
+  BURUH: 'BURUH',
+  PENSIUNAN: 'PENSIUNAN',
+  LAINNYA: 'LAINNYA'
+};
+
+export type Occupation = (typeof Occupation)[keyof typeof Occupation]
+
+}
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
+
+export type Religion = $Enums.Religion
+
+export const Religion: typeof $Enums.Religion
+
+export type MaritalStatus = $Enums.MaritalStatus
+
+export const MaritalStatus: typeof $Enums.MaritalStatus
+
+export type FamilyRole = $Enums.FamilyRole
+
+export const FamilyRole: typeof $Enums.FamilyRole
+
+export type Education = $Enums.Education
+
+export const Education: typeof $Enums.Education
+
+export type Occupation = $Enums.Occupation
+
+export const Occupation: typeof $Enums.Occupation
 
 /**
  * ##  Prisma Client ʲˢ
@@ -191,6 +320,36 @@ export class PrismaClient<
     * ```
     */
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.citizen`: Exposes CRUD operations for the **Citizen** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Citizens
+    * const citizens = await prisma.citizen.findMany()
+    * ```
+    */
+  get citizen(): Prisma.CitizenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.family`: Exposes CRUD operations for the **Family** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Families
+    * const families = await prisma.family.findMany()
+    * ```
+    */
+  get family(): Prisma.FamilyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.address`: Exposes CRUD operations for the **Address** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Addresses
+    * const addresses = await prisma.address.findMany()
+    * ```
+    */
+  get address(): Prisma.AddressDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -635,7 +794,10 @@ export namespace Prisma {
     User: 'User',
     Session: 'Session',
     Account: 'Account',
-    Verification: 'Verification'
+    Verification: 'Verification',
+    Citizen: 'Citizen',
+    Family: 'Family',
+    Address: 'Address'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -654,7 +816,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification"
+      modelProps: "user" | "session" | "account" | "verification" | "citizen" | "family" | "address"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -954,6 +1116,228 @@ export namespace Prisma {
           }
         }
       }
+      Citizen: {
+        payload: Prisma.$CitizenPayload<ExtArgs>
+        fields: Prisma.CitizenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CitizenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CitizenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>
+          }
+          findFirst: {
+            args: Prisma.CitizenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CitizenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>
+          }
+          findMany: {
+            args: Prisma.CitizenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>[]
+          }
+          create: {
+            args: Prisma.CitizenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>
+          }
+          createMany: {
+            args: Prisma.CitizenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CitizenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>[]
+          }
+          delete: {
+            args: Prisma.CitizenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>
+          }
+          update: {
+            args: Prisma.CitizenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>
+          }
+          deleteMany: {
+            args: Prisma.CitizenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CitizenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CitizenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>[]
+          }
+          upsert: {
+            args: Prisma.CitizenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CitizenPayload>
+          }
+          aggregate: {
+            args: Prisma.CitizenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCitizen>
+          }
+          groupBy: {
+            args: Prisma.CitizenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CitizenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CitizenCountArgs<ExtArgs>
+            result: $Utils.Optional<CitizenCountAggregateOutputType> | number
+          }
+        }
+      }
+      Family: {
+        payload: Prisma.$FamilyPayload<ExtArgs>
+        fields: Prisma.FamilyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FamilyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FamilyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>
+          }
+          findFirst: {
+            args: Prisma.FamilyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FamilyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>
+          }
+          findMany: {
+            args: Prisma.FamilyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>[]
+          }
+          create: {
+            args: Prisma.FamilyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>
+          }
+          createMany: {
+            args: Prisma.FamilyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FamilyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>[]
+          }
+          delete: {
+            args: Prisma.FamilyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>
+          }
+          update: {
+            args: Prisma.FamilyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>
+          }
+          deleteMany: {
+            args: Prisma.FamilyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FamilyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FamilyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>[]
+          }
+          upsert: {
+            args: Prisma.FamilyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyPayload>
+          }
+          aggregate: {
+            args: Prisma.FamilyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFamily>
+          }
+          groupBy: {
+            args: Prisma.FamilyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FamilyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FamilyCountArgs<ExtArgs>
+            result: $Utils.Optional<FamilyCountAggregateOutputType> | number
+          }
+        }
+      }
+      Address: {
+        payload: Prisma.$AddressPayload<ExtArgs>
+        fields: Prisma.AddressFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AddressFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AddressFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          findFirst: {
+            args: Prisma.AddressFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AddressFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          findMany: {
+            args: Prisma.AddressFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>[]
+          }
+          create: {
+            args: Prisma.AddressCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          createMany: {
+            args: Prisma.AddressCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AddressCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>[]
+          }
+          delete: {
+            args: Prisma.AddressDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          update: {
+            args: Prisma.AddressUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          deleteMany: {
+            args: Prisma.AddressDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AddressUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AddressUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>[]
+          }
+          upsert: {
+            args: Prisma.AddressUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          aggregate: {
+            args: Prisma.AddressAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAddress>
+          }
+          groupBy: {
+            args: Prisma.AddressGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AddressGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AddressCountArgs<ExtArgs>
+            result: $Utils.Optional<AddressCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1054,6 +1438,9 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
+    citizen?: CitizenOmit
+    family?: FamilyOmit
+    address?: AddressOmit
   }
 
   /* Types for Logging */
@@ -1166,6 +1553,77 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccountWhereInput
+  }
+
+
+  /**
+   * Count Type FamilyCountOutputType
+   */
+
+  export type FamilyCountOutputType = {
+    anggota: number
+  }
+
+  export type FamilyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    anggota?: boolean | FamilyCountOutputTypeCountAnggotaArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FamilyCountOutputType without action
+   */
+  export type FamilyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCountOutputType
+     */
+    select?: FamilyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FamilyCountOutputType without action
+   */
+  export type FamilyCountOutputTypeCountAnggotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CitizenWhereInput
+  }
+
+
+  /**
+   * Count Type AddressCountOutputType
+   */
+
+  export type AddressCountOutputType = {
+    penduduk: number
+    keluarga: number
+  }
+
+  export type AddressCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    penduduk?: boolean | AddressCountOutputTypeCountPendudukArgs
+    keluarga?: boolean | AddressCountOutputTypeCountKeluargaArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AddressCountOutputType without action
+   */
+  export type AddressCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddressCountOutputType
+     */
+    select?: AddressCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AddressCountOutputType without action
+   */
+  export type AddressCountOutputTypeCountPendudukArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CitizenWhereInput
+  }
+
+  /**
+   * AddressCountOutputType without action
+   */
+  export type AddressCountOutputTypeCountKeluargaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyWhereInput
   }
 
 
@@ -5565,6 +6023,3588 @@ export namespace Prisma {
 
 
   /**
+   * Model Citizen
+   */
+
+  export type AggregateCitizen = {
+    _count: CitizenCountAggregateOutputType | null
+    _min: CitizenMinAggregateOutputType | null
+    _max: CitizenMaxAggregateOutputType | null
+  }
+
+  export type CitizenMinAggregateOutputType = {
+    id: string | null
+    nik: string | null
+    nama: string | null
+    jenisKelamin: $Enums.Gender | null
+    tempatLahir: string | null
+    tanggalLahir: Date | null
+    agama: $Enums.Religion | null
+    pendidikan: $Enums.Education | null
+    pekerjaan: $Enums.Occupation | null
+    statusPerkawinan: $Enums.MaritalStatus | null
+    kewarganegaraan: string | null
+    noHp: string | null
+    email: string | null
+    alamatId: string | null
+    keluargaId: string | null
+    statusDalamKeluarga: $Enums.FamilyRole | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CitizenMaxAggregateOutputType = {
+    id: string | null
+    nik: string | null
+    nama: string | null
+    jenisKelamin: $Enums.Gender | null
+    tempatLahir: string | null
+    tanggalLahir: Date | null
+    agama: $Enums.Religion | null
+    pendidikan: $Enums.Education | null
+    pekerjaan: $Enums.Occupation | null
+    statusPerkawinan: $Enums.MaritalStatus | null
+    kewarganegaraan: string | null
+    noHp: string | null
+    email: string | null
+    alamatId: string | null
+    keluargaId: string | null
+    statusDalamKeluarga: $Enums.FamilyRole | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CitizenCountAggregateOutputType = {
+    id: number
+    nik: number
+    nama: number
+    jenisKelamin: number
+    tempatLahir: number
+    tanggalLahir: number
+    agama: number
+    pendidikan: number
+    pekerjaan: number
+    statusPerkawinan: number
+    kewarganegaraan: number
+    noHp: number
+    email: number
+    alamatId: number
+    keluargaId: number
+    statusDalamKeluarga: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CitizenMinAggregateInputType = {
+    id?: true
+    nik?: true
+    nama?: true
+    jenisKelamin?: true
+    tempatLahir?: true
+    tanggalLahir?: true
+    agama?: true
+    pendidikan?: true
+    pekerjaan?: true
+    statusPerkawinan?: true
+    kewarganegaraan?: true
+    noHp?: true
+    email?: true
+    alamatId?: true
+    keluargaId?: true
+    statusDalamKeluarga?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CitizenMaxAggregateInputType = {
+    id?: true
+    nik?: true
+    nama?: true
+    jenisKelamin?: true
+    tempatLahir?: true
+    tanggalLahir?: true
+    agama?: true
+    pendidikan?: true
+    pekerjaan?: true
+    statusPerkawinan?: true
+    kewarganegaraan?: true
+    noHp?: true
+    email?: true
+    alamatId?: true
+    keluargaId?: true
+    statusDalamKeluarga?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CitizenCountAggregateInputType = {
+    id?: true
+    nik?: true
+    nama?: true
+    jenisKelamin?: true
+    tempatLahir?: true
+    tanggalLahir?: true
+    agama?: true
+    pendidikan?: true
+    pekerjaan?: true
+    statusPerkawinan?: true
+    kewarganegaraan?: true
+    noHp?: true
+    email?: true
+    alamatId?: true
+    keluargaId?: true
+    statusDalamKeluarga?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CitizenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Citizen to aggregate.
+     */
+    where?: CitizenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Citizens to fetch.
+     */
+    orderBy?: CitizenOrderByWithRelationInput | CitizenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CitizenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Citizens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Citizens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Citizens
+    **/
+    _count?: true | CitizenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CitizenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CitizenMaxAggregateInputType
+  }
+
+  export type GetCitizenAggregateType<T extends CitizenAggregateArgs> = {
+        [P in keyof T & keyof AggregateCitizen]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCitizen[P]>
+      : GetScalarType<T[P], AggregateCitizen[P]>
+  }
+
+
+
+
+  export type CitizenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CitizenWhereInput
+    orderBy?: CitizenOrderByWithAggregationInput | CitizenOrderByWithAggregationInput[]
+    by: CitizenScalarFieldEnum[] | CitizenScalarFieldEnum
+    having?: CitizenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CitizenCountAggregateInputType | true
+    _min?: CitizenMinAggregateInputType
+    _max?: CitizenMaxAggregateInputType
+  }
+
+  export type CitizenGroupByOutputType = {
+    id: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir: string | null
+    tanggalLahir: Date | null
+    agama: $Enums.Religion | null
+    pendidikan: $Enums.Education | null
+    pekerjaan: $Enums.Occupation | null
+    statusPerkawinan: $Enums.MaritalStatus | null
+    kewarganegaraan: string | null
+    noHp: string | null
+    email: string | null
+    alamatId: string | null
+    keluargaId: string | null
+    statusDalamKeluarga: $Enums.FamilyRole | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CitizenCountAggregateOutputType | null
+    _min: CitizenMinAggregateOutputType | null
+    _max: CitizenMaxAggregateOutputType | null
+  }
+
+  type GetCitizenGroupByPayload<T extends CitizenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CitizenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CitizenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CitizenGroupByOutputType[P]>
+            : GetScalarType<T[P], CitizenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CitizenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    jenisKelamin?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    kewarganegaraan?: boolean
+    noHp?: boolean
+    email?: boolean
+    alamatId?: boolean
+    keluargaId?: boolean
+    statusDalamKeluarga?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    alamat?: boolean | Citizen$alamatArgs<ExtArgs>
+    keluarga?: boolean | Citizen$keluargaArgs<ExtArgs>
+  }, ExtArgs["result"]["citizen"]>
+
+  export type CitizenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    jenisKelamin?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    kewarganegaraan?: boolean
+    noHp?: boolean
+    email?: boolean
+    alamatId?: boolean
+    keluargaId?: boolean
+    statusDalamKeluarga?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    alamat?: boolean | Citizen$alamatArgs<ExtArgs>
+    keluarga?: boolean | Citizen$keluargaArgs<ExtArgs>
+  }, ExtArgs["result"]["citizen"]>
+
+  export type CitizenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    jenisKelamin?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    kewarganegaraan?: boolean
+    noHp?: boolean
+    email?: boolean
+    alamatId?: boolean
+    keluargaId?: boolean
+    statusDalamKeluarga?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    alamat?: boolean | Citizen$alamatArgs<ExtArgs>
+    keluarga?: boolean | Citizen$keluargaArgs<ExtArgs>
+  }, ExtArgs["result"]["citizen"]>
+
+  export type CitizenSelectScalar = {
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    jenisKelamin?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    kewarganegaraan?: boolean
+    noHp?: boolean
+    email?: boolean
+    alamatId?: boolean
+    keluargaId?: boolean
+    statusDalamKeluarga?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CitizenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nik" | "nama" | "jenisKelamin" | "tempatLahir" | "tanggalLahir" | "agama" | "pendidikan" | "pekerjaan" | "statusPerkawinan" | "kewarganegaraan" | "noHp" | "email" | "alamatId" | "keluargaId" | "statusDalamKeluarga" | "createdAt" | "updatedAt", ExtArgs["result"]["citizen"]>
+  export type CitizenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    alamat?: boolean | Citizen$alamatArgs<ExtArgs>
+    keluarga?: boolean | Citizen$keluargaArgs<ExtArgs>
+  }
+  export type CitizenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    alamat?: boolean | Citizen$alamatArgs<ExtArgs>
+    keluarga?: boolean | Citizen$keluargaArgs<ExtArgs>
+  }
+  export type CitizenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    alamat?: boolean | Citizen$alamatArgs<ExtArgs>
+    keluarga?: boolean | Citizen$keluargaArgs<ExtArgs>
+  }
+
+  export type $CitizenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Citizen"
+    objects: {
+      alamat: Prisma.$AddressPayload<ExtArgs> | null
+      keluarga: Prisma.$FamilyPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nik: string
+      nama: string
+      jenisKelamin: $Enums.Gender
+      tempatLahir: string | null
+      tanggalLahir: Date | null
+      agama: $Enums.Religion | null
+      pendidikan: $Enums.Education | null
+      pekerjaan: $Enums.Occupation | null
+      statusPerkawinan: $Enums.MaritalStatus | null
+      kewarganegaraan: string | null
+      noHp: string | null
+      email: string | null
+      alamatId: string | null
+      keluargaId: string | null
+      statusDalamKeluarga: $Enums.FamilyRole | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["citizen"]>
+    composites: {}
+  }
+
+  type CitizenGetPayload<S extends boolean | null | undefined | CitizenDefaultArgs> = $Result.GetResult<Prisma.$CitizenPayload, S>
+
+  type CitizenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CitizenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CitizenCountAggregateInputType | true
+    }
+
+  export interface CitizenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Citizen'], meta: { name: 'Citizen' } }
+    /**
+     * Find zero or one Citizen that matches the filter.
+     * @param {CitizenFindUniqueArgs} args - Arguments to find a Citizen
+     * @example
+     * // Get one Citizen
+     * const citizen = await prisma.citizen.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CitizenFindUniqueArgs>(args: SelectSubset<T, CitizenFindUniqueArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Citizen that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CitizenFindUniqueOrThrowArgs} args - Arguments to find a Citizen
+     * @example
+     * // Get one Citizen
+     * const citizen = await prisma.citizen.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CitizenFindUniqueOrThrowArgs>(args: SelectSubset<T, CitizenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Citizen that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenFindFirstArgs} args - Arguments to find a Citizen
+     * @example
+     * // Get one Citizen
+     * const citizen = await prisma.citizen.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CitizenFindFirstArgs>(args?: SelectSubset<T, CitizenFindFirstArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Citizen that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenFindFirstOrThrowArgs} args - Arguments to find a Citizen
+     * @example
+     * // Get one Citizen
+     * const citizen = await prisma.citizen.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CitizenFindFirstOrThrowArgs>(args?: SelectSubset<T, CitizenFindFirstOrThrowArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Citizens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Citizens
+     * const citizens = await prisma.citizen.findMany()
+     * 
+     * // Get first 10 Citizens
+     * const citizens = await prisma.citizen.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const citizenWithIdOnly = await prisma.citizen.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CitizenFindManyArgs>(args?: SelectSubset<T, CitizenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Citizen.
+     * @param {CitizenCreateArgs} args - Arguments to create a Citizen.
+     * @example
+     * // Create one Citizen
+     * const Citizen = await prisma.citizen.create({
+     *   data: {
+     *     // ... data to create a Citizen
+     *   }
+     * })
+     * 
+     */
+    create<T extends CitizenCreateArgs>(args: SelectSubset<T, CitizenCreateArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Citizens.
+     * @param {CitizenCreateManyArgs} args - Arguments to create many Citizens.
+     * @example
+     * // Create many Citizens
+     * const citizen = await prisma.citizen.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CitizenCreateManyArgs>(args?: SelectSubset<T, CitizenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Citizens and returns the data saved in the database.
+     * @param {CitizenCreateManyAndReturnArgs} args - Arguments to create many Citizens.
+     * @example
+     * // Create many Citizens
+     * const citizen = await prisma.citizen.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Citizens and only return the `id`
+     * const citizenWithIdOnly = await prisma.citizen.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CitizenCreateManyAndReturnArgs>(args?: SelectSubset<T, CitizenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Citizen.
+     * @param {CitizenDeleteArgs} args - Arguments to delete one Citizen.
+     * @example
+     * // Delete one Citizen
+     * const Citizen = await prisma.citizen.delete({
+     *   where: {
+     *     // ... filter to delete one Citizen
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CitizenDeleteArgs>(args: SelectSubset<T, CitizenDeleteArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Citizen.
+     * @param {CitizenUpdateArgs} args - Arguments to update one Citizen.
+     * @example
+     * // Update one Citizen
+     * const citizen = await prisma.citizen.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CitizenUpdateArgs>(args: SelectSubset<T, CitizenUpdateArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Citizens.
+     * @param {CitizenDeleteManyArgs} args - Arguments to filter Citizens to delete.
+     * @example
+     * // Delete a few Citizens
+     * const { count } = await prisma.citizen.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CitizenDeleteManyArgs>(args?: SelectSubset<T, CitizenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Citizens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Citizens
+     * const citizen = await prisma.citizen.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CitizenUpdateManyArgs>(args: SelectSubset<T, CitizenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Citizens and returns the data updated in the database.
+     * @param {CitizenUpdateManyAndReturnArgs} args - Arguments to update many Citizens.
+     * @example
+     * // Update many Citizens
+     * const citizen = await prisma.citizen.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Citizens and only return the `id`
+     * const citizenWithIdOnly = await prisma.citizen.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CitizenUpdateManyAndReturnArgs>(args: SelectSubset<T, CitizenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Citizen.
+     * @param {CitizenUpsertArgs} args - Arguments to update or create a Citizen.
+     * @example
+     * // Update or create a Citizen
+     * const citizen = await prisma.citizen.upsert({
+     *   create: {
+     *     // ... data to create a Citizen
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Citizen we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CitizenUpsertArgs>(args: SelectSubset<T, CitizenUpsertArgs<ExtArgs>>): Prisma__CitizenClient<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Citizens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenCountArgs} args - Arguments to filter Citizens to count.
+     * @example
+     * // Count the number of Citizens
+     * const count = await prisma.citizen.count({
+     *   where: {
+     *     // ... the filter for the Citizens we want to count
+     *   }
+     * })
+    **/
+    count<T extends CitizenCountArgs>(
+      args?: Subset<T, CitizenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CitizenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Citizen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CitizenAggregateArgs>(args: Subset<T, CitizenAggregateArgs>): Prisma.PrismaPromise<GetCitizenAggregateType<T>>
+
+    /**
+     * Group by Citizen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CitizenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CitizenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CitizenGroupByArgs['orderBy'] }
+        : { orderBy?: CitizenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CitizenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCitizenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Citizen model
+   */
+  readonly fields: CitizenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Citizen.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CitizenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    alamat<T extends Citizen$alamatArgs<ExtArgs> = {}>(args?: Subset<T, Citizen$alamatArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    keluarga<T extends Citizen$keluargaArgs<ExtArgs> = {}>(args?: Subset<T, Citizen$keluargaArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Citizen model
+   */
+  interface CitizenFieldRefs {
+    readonly id: FieldRef<"Citizen", 'String'>
+    readonly nik: FieldRef<"Citizen", 'String'>
+    readonly nama: FieldRef<"Citizen", 'String'>
+    readonly jenisKelamin: FieldRef<"Citizen", 'Gender'>
+    readonly tempatLahir: FieldRef<"Citizen", 'String'>
+    readonly tanggalLahir: FieldRef<"Citizen", 'DateTime'>
+    readonly agama: FieldRef<"Citizen", 'Religion'>
+    readonly pendidikan: FieldRef<"Citizen", 'Education'>
+    readonly pekerjaan: FieldRef<"Citizen", 'Occupation'>
+    readonly statusPerkawinan: FieldRef<"Citizen", 'MaritalStatus'>
+    readonly kewarganegaraan: FieldRef<"Citizen", 'String'>
+    readonly noHp: FieldRef<"Citizen", 'String'>
+    readonly email: FieldRef<"Citizen", 'String'>
+    readonly alamatId: FieldRef<"Citizen", 'String'>
+    readonly keluargaId: FieldRef<"Citizen", 'String'>
+    readonly statusDalamKeluarga: FieldRef<"Citizen", 'FamilyRole'>
+    readonly createdAt: FieldRef<"Citizen", 'DateTime'>
+    readonly updatedAt: FieldRef<"Citizen", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Citizen findUnique
+   */
+  export type CitizenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * Filter, which Citizen to fetch.
+     */
+    where: CitizenWhereUniqueInput
+  }
+
+  /**
+   * Citizen findUniqueOrThrow
+   */
+  export type CitizenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * Filter, which Citizen to fetch.
+     */
+    where: CitizenWhereUniqueInput
+  }
+
+  /**
+   * Citizen findFirst
+   */
+  export type CitizenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * Filter, which Citizen to fetch.
+     */
+    where?: CitizenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Citizens to fetch.
+     */
+    orderBy?: CitizenOrderByWithRelationInput | CitizenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Citizens.
+     */
+    cursor?: CitizenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Citizens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Citizens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Citizens.
+     */
+    distinct?: CitizenScalarFieldEnum | CitizenScalarFieldEnum[]
+  }
+
+  /**
+   * Citizen findFirstOrThrow
+   */
+  export type CitizenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * Filter, which Citizen to fetch.
+     */
+    where?: CitizenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Citizens to fetch.
+     */
+    orderBy?: CitizenOrderByWithRelationInput | CitizenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Citizens.
+     */
+    cursor?: CitizenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Citizens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Citizens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Citizens.
+     */
+    distinct?: CitizenScalarFieldEnum | CitizenScalarFieldEnum[]
+  }
+
+  /**
+   * Citizen findMany
+   */
+  export type CitizenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * Filter, which Citizens to fetch.
+     */
+    where?: CitizenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Citizens to fetch.
+     */
+    orderBy?: CitizenOrderByWithRelationInput | CitizenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Citizens.
+     */
+    cursor?: CitizenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Citizens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Citizens.
+     */
+    skip?: number
+    distinct?: CitizenScalarFieldEnum | CitizenScalarFieldEnum[]
+  }
+
+  /**
+   * Citizen create
+   */
+  export type CitizenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Citizen.
+     */
+    data: XOR<CitizenCreateInput, CitizenUncheckedCreateInput>
+  }
+
+  /**
+   * Citizen createMany
+   */
+  export type CitizenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Citizens.
+     */
+    data: CitizenCreateManyInput | CitizenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Citizen createManyAndReturn
+   */
+  export type CitizenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * The data used to create many Citizens.
+     */
+    data: CitizenCreateManyInput | CitizenCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Citizen update
+   */
+  export type CitizenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Citizen.
+     */
+    data: XOR<CitizenUpdateInput, CitizenUncheckedUpdateInput>
+    /**
+     * Choose, which Citizen to update.
+     */
+    where: CitizenWhereUniqueInput
+  }
+
+  /**
+   * Citizen updateMany
+   */
+  export type CitizenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Citizens.
+     */
+    data: XOR<CitizenUpdateManyMutationInput, CitizenUncheckedUpdateManyInput>
+    /**
+     * Filter which Citizens to update
+     */
+    where?: CitizenWhereInput
+    /**
+     * Limit how many Citizens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Citizen updateManyAndReturn
+   */
+  export type CitizenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * The data used to update Citizens.
+     */
+    data: XOR<CitizenUpdateManyMutationInput, CitizenUncheckedUpdateManyInput>
+    /**
+     * Filter which Citizens to update
+     */
+    where?: CitizenWhereInput
+    /**
+     * Limit how many Citizens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Citizen upsert
+   */
+  export type CitizenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Citizen to update in case it exists.
+     */
+    where: CitizenWhereUniqueInput
+    /**
+     * In case the Citizen found by the `where` argument doesn't exist, create a new Citizen with this data.
+     */
+    create: XOR<CitizenCreateInput, CitizenUncheckedCreateInput>
+    /**
+     * In case the Citizen was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CitizenUpdateInput, CitizenUncheckedUpdateInput>
+  }
+
+  /**
+   * Citizen delete
+   */
+  export type CitizenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    /**
+     * Filter which Citizen to delete.
+     */
+    where: CitizenWhereUniqueInput
+  }
+
+  /**
+   * Citizen deleteMany
+   */
+  export type CitizenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Citizens to delete
+     */
+    where?: CitizenWhereInput
+    /**
+     * Limit how many Citizens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Citizen.alamat
+   */
+  export type Citizen$alamatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    where?: AddressWhereInput
+  }
+
+  /**
+   * Citizen.keluarga
+   */
+  export type Citizen$keluargaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    where?: FamilyWhereInput
+  }
+
+  /**
+   * Citizen without action
+   */
+  export type CitizenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Family
+   */
+
+  export type AggregateFamily = {
+    _count: FamilyCountAggregateOutputType | null
+    _min: FamilyMinAggregateOutputType | null
+    _max: FamilyMaxAggregateOutputType | null
+  }
+
+  export type FamilyMinAggregateOutputType = {
+    id: string | null
+    noKK: string | null
+    kepalaNIK: string | null
+    namaKepala: string | null
+    alamatId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FamilyMaxAggregateOutputType = {
+    id: string | null
+    noKK: string | null
+    kepalaNIK: string | null
+    namaKepala: string | null
+    alamatId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FamilyCountAggregateOutputType = {
+    id: number
+    noKK: number
+    kepalaNIK: number
+    namaKepala: number
+    alamatId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FamilyMinAggregateInputType = {
+    id?: true
+    noKK?: true
+    kepalaNIK?: true
+    namaKepala?: true
+    alamatId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FamilyMaxAggregateInputType = {
+    id?: true
+    noKK?: true
+    kepalaNIK?: true
+    namaKepala?: true
+    alamatId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FamilyCountAggregateInputType = {
+    id?: true
+    noKK?: true
+    kepalaNIK?: true
+    namaKepala?: true
+    alamatId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FamilyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Family to aggregate.
+     */
+    where?: FamilyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Families to fetch.
+     */
+    orderBy?: FamilyOrderByWithRelationInput | FamilyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FamilyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Families from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Families.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Families
+    **/
+    _count?: true | FamilyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FamilyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FamilyMaxAggregateInputType
+  }
+
+  export type GetFamilyAggregateType<T extends FamilyAggregateArgs> = {
+        [P in keyof T & keyof AggregateFamily]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFamily[P]>
+      : GetScalarType<T[P], AggregateFamily[P]>
+  }
+
+
+
+
+  export type FamilyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyWhereInput
+    orderBy?: FamilyOrderByWithAggregationInput | FamilyOrderByWithAggregationInput[]
+    by: FamilyScalarFieldEnum[] | FamilyScalarFieldEnum
+    having?: FamilyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FamilyCountAggregateInputType | true
+    _min?: FamilyMinAggregateInputType
+    _max?: FamilyMaxAggregateInputType
+  }
+
+  export type FamilyGroupByOutputType = {
+    id: string
+    noKK: string
+    kepalaNIK: string | null
+    namaKepala: string | null
+    alamatId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: FamilyCountAggregateOutputType | null
+    _min: FamilyMinAggregateOutputType | null
+    _max: FamilyMaxAggregateOutputType | null
+  }
+
+  type GetFamilyGroupByPayload<T extends FamilyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FamilyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FamilyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FamilyGroupByOutputType[P]>
+            : GetScalarType<T[P], FamilyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FamilySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    noKK?: boolean
+    kepalaNIK?: boolean
+    namaKepala?: boolean
+    alamatId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    alamat?: boolean | Family$alamatArgs<ExtArgs>
+    anggota?: boolean | Family$anggotaArgs<ExtArgs>
+    _count?: boolean | FamilyCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["family"]>
+
+  export type FamilySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    noKK?: boolean
+    kepalaNIK?: boolean
+    namaKepala?: boolean
+    alamatId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    alamat?: boolean | Family$alamatArgs<ExtArgs>
+  }, ExtArgs["result"]["family"]>
+
+  export type FamilySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    noKK?: boolean
+    kepalaNIK?: boolean
+    namaKepala?: boolean
+    alamatId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    alamat?: boolean | Family$alamatArgs<ExtArgs>
+  }, ExtArgs["result"]["family"]>
+
+  export type FamilySelectScalar = {
+    id?: boolean
+    noKK?: boolean
+    kepalaNIK?: boolean
+    namaKepala?: boolean
+    alamatId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FamilyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "noKK" | "kepalaNIK" | "namaKepala" | "alamatId" | "createdAt" | "updatedAt", ExtArgs["result"]["family"]>
+  export type FamilyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    alamat?: boolean | Family$alamatArgs<ExtArgs>
+    anggota?: boolean | Family$anggotaArgs<ExtArgs>
+    _count?: boolean | FamilyCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FamilyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    alamat?: boolean | Family$alamatArgs<ExtArgs>
+  }
+  export type FamilyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    alamat?: boolean | Family$alamatArgs<ExtArgs>
+  }
+
+  export type $FamilyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Family"
+    objects: {
+      alamat: Prisma.$AddressPayload<ExtArgs> | null
+      anggota: Prisma.$CitizenPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      noKK: string
+      kepalaNIK: string | null
+      namaKepala: string | null
+      alamatId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["family"]>
+    composites: {}
+  }
+
+  type FamilyGetPayload<S extends boolean | null | undefined | FamilyDefaultArgs> = $Result.GetResult<Prisma.$FamilyPayload, S>
+
+  type FamilyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FamilyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FamilyCountAggregateInputType | true
+    }
+
+  export interface FamilyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Family'], meta: { name: 'Family' } }
+    /**
+     * Find zero or one Family that matches the filter.
+     * @param {FamilyFindUniqueArgs} args - Arguments to find a Family
+     * @example
+     * // Get one Family
+     * const family = await prisma.family.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FamilyFindUniqueArgs>(args: SelectSubset<T, FamilyFindUniqueArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Family that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FamilyFindUniqueOrThrowArgs} args - Arguments to find a Family
+     * @example
+     * // Get one Family
+     * const family = await prisma.family.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FamilyFindUniqueOrThrowArgs>(args: SelectSubset<T, FamilyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Family that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyFindFirstArgs} args - Arguments to find a Family
+     * @example
+     * // Get one Family
+     * const family = await prisma.family.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FamilyFindFirstArgs>(args?: SelectSubset<T, FamilyFindFirstArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Family that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyFindFirstOrThrowArgs} args - Arguments to find a Family
+     * @example
+     * // Get one Family
+     * const family = await prisma.family.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FamilyFindFirstOrThrowArgs>(args?: SelectSubset<T, FamilyFindFirstOrThrowArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Families that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Families
+     * const families = await prisma.family.findMany()
+     * 
+     * // Get first 10 Families
+     * const families = await prisma.family.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const familyWithIdOnly = await prisma.family.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FamilyFindManyArgs>(args?: SelectSubset<T, FamilyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Family.
+     * @param {FamilyCreateArgs} args - Arguments to create a Family.
+     * @example
+     * // Create one Family
+     * const Family = await prisma.family.create({
+     *   data: {
+     *     // ... data to create a Family
+     *   }
+     * })
+     * 
+     */
+    create<T extends FamilyCreateArgs>(args: SelectSubset<T, FamilyCreateArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Families.
+     * @param {FamilyCreateManyArgs} args - Arguments to create many Families.
+     * @example
+     * // Create many Families
+     * const family = await prisma.family.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FamilyCreateManyArgs>(args?: SelectSubset<T, FamilyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Families and returns the data saved in the database.
+     * @param {FamilyCreateManyAndReturnArgs} args - Arguments to create many Families.
+     * @example
+     * // Create many Families
+     * const family = await prisma.family.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Families and only return the `id`
+     * const familyWithIdOnly = await prisma.family.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FamilyCreateManyAndReturnArgs>(args?: SelectSubset<T, FamilyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Family.
+     * @param {FamilyDeleteArgs} args - Arguments to delete one Family.
+     * @example
+     * // Delete one Family
+     * const Family = await prisma.family.delete({
+     *   where: {
+     *     // ... filter to delete one Family
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FamilyDeleteArgs>(args: SelectSubset<T, FamilyDeleteArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Family.
+     * @param {FamilyUpdateArgs} args - Arguments to update one Family.
+     * @example
+     * // Update one Family
+     * const family = await prisma.family.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FamilyUpdateArgs>(args: SelectSubset<T, FamilyUpdateArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Families.
+     * @param {FamilyDeleteManyArgs} args - Arguments to filter Families to delete.
+     * @example
+     * // Delete a few Families
+     * const { count } = await prisma.family.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FamilyDeleteManyArgs>(args?: SelectSubset<T, FamilyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Families.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Families
+     * const family = await prisma.family.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FamilyUpdateManyArgs>(args: SelectSubset<T, FamilyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Families and returns the data updated in the database.
+     * @param {FamilyUpdateManyAndReturnArgs} args - Arguments to update many Families.
+     * @example
+     * // Update many Families
+     * const family = await prisma.family.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Families and only return the `id`
+     * const familyWithIdOnly = await prisma.family.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FamilyUpdateManyAndReturnArgs>(args: SelectSubset<T, FamilyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Family.
+     * @param {FamilyUpsertArgs} args - Arguments to update or create a Family.
+     * @example
+     * // Update or create a Family
+     * const family = await prisma.family.upsert({
+     *   create: {
+     *     // ... data to create a Family
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Family we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FamilyUpsertArgs>(args: SelectSubset<T, FamilyUpsertArgs<ExtArgs>>): Prisma__FamilyClient<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Families.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCountArgs} args - Arguments to filter Families to count.
+     * @example
+     * // Count the number of Families
+     * const count = await prisma.family.count({
+     *   where: {
+     *     // ... the filter for the Families we want to count
+     *   }
+     * })
+    **/
+    count<T extends FamilyCountArgs>(
+      args?: Subset<T, FamilyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FamilyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Family.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FamilyAggregateArgs>(args: Subset<T, FamilyAggregateArgs>): Prisma.PrismaPromise<GetFamilyAggregateType<T>>
+
+    /**
+     * Group by Family.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FamilyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FamilyGroupByArgs['orderBy'] }
+        : { orderBy?: FamilyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FamilyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFamilyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Family model
+   */
+  readonly fields: FamilyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Family.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FamilyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    alamat<T extends Family$alamatArgs<ExtArgs> = {}>(args?: Subset<T, Family$alamatArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    anggota<T extends Family$anggotaArgs<ExtArgs> = {}>(args?: Subset<T, Family$anggotaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Family model
+   */
+  interface FamilyFieldRefs {
+    readonly id: FieldRef<"Family", 'String'>
+    readonly noKK: FieldRef<"Family", 'String'>
+    readonly kepalaNIK: FieldRef<"Family", 'String'>
+    readonly namaKepala: FieldRef<"Family", 'String'>
+    readonly alamatId: FieldRef<"Family", 'String'>
+    readonly createdAt: FieldRef<"Family", 'DateTime'>
+    readonly updatedAt: FieldRef<"Family", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Family findUnique
+   */
+  export type FamilyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * Filter, which Family to fetch.
+     */
+    where: FamilyWhereUniqueInput
+  }
+
+  /**
+   * Family findUniqueOrThrow
+   */
+  export type FamilyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * Filter, which Family to fetch.
+     */
+    where: FamilyWhereUniqueInput
+  }
+
+  /**
+   * Family findFirst
+   */
+  export type FamilyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * Filter, which Family to fetch.
+     */
+    where?: FamilyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Families to fetch.
+     */
+    orderBy?: FamilyOrderByWithRelationInput | FamilyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Families.
+     */
+    cursor?: FamilyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Families from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Families.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Families.
+     */
+    distinct?: FamilyScalarFieldEnum | FamilyScalarFieldEnum[]
+  }
+
+  /**
+   * Family findFirstOrThrow
+   */
+  export type FamilyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * Filter, which Family to fetch.
+     */
+    where?: FamilyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Families to fetch.
+     */
+    orderBy?: FamilyOrderByWithRelationInput | FamilyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Families.
+     */
+    cursor?: FamilyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Families from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Families.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Families.
+     */
+    distinct?: FamilyScalarFieldEnum | FamilyScalarFieldEnum[]
+  }
+
+  /**
+   * Family findMany
+   */
+  export type FamilyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * Filter, which Families to fetch.
+     */
+    where?: FamilyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Families to fetch.
+     */
+    orderBy?: FamilyOrderByWithRelationInput | FamilyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Families.
+     */
+    cursor?: FamilyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Families from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Families.
+     */
+    skip?: number
+    distinct?: FamilyScalarFieldEnum | FamilyScalarFieldEnum[]
+  }
+
+  /**
+   * Family create
+   */
+  export type FamilyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Family.
+     */
+    data: XOR<FamilyCreateInput, FamilyUncheckedCreateInput>
+  }
+
+  /**
+   * Family createMany
+   */
+  export type FamilyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Families.
+     */
+    data: FamilyCreateManyInput | FamilyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Family createManyAndReturn
+   */
+  export type FamilyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * The data used to create many Families.
+     */
+    data: FamilyCreateManyInput | FamilyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Family update
+   */
+  export type FamilyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Family.
+     */
+    data: XOR<FamilyUpdateInput, FamilyUncheckedUpdateInput>
+    /**
+     * Choose, which Family to update.
+     */
+    where: FamilyWhereUniqueInput
+  }
+
+  /**
+   * Family updateMany
+   */
+  export type FamilyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Families.
+     */
+    data: XOR<FamilyUpdateManyMutationInput, FamilyUncheckedUpdateManyInput>
+    /**
+     * Filter which Families to update
+     */
+    where?: FamilyWhereInput
+    /**
+     * Limit how many Families to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Family updateManyAndReturn
+   */
+  export type FamilyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * The data used to update Families.
+     */
+    data: XOR<FamilyUpdateManyMutationInput, FamilyUncheckedUpdateManyInput>
+    /**
+     * Filter which Families to update
+     */
+    where?: FamilyWhereInput
+    /**
+     * Limit how many Families to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Family upsert
+   */
+  export type FamilyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Family to update in case it exists.
+     */
+    where: FamilyWhereUniqueInput
+    /**
+     * In case the Family found by the `where` argument doesn't exist, create a new Family with this data.
+     */
+    create: XOR<FamilyCreateInput, FamilyUncheckedCreateInput>
+    /**
+     * In case the Family was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FamilyUpdateInput, FamilyUncheckedUpdateInput>
+  }
+
+  /**
+   * Family delete
+   */
+  export type FamilyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    /**
+     * Filter which Family to delete.
+     */
+    where: FamilyWhereUniqueInput
+  }
+
+  /**
+   * Family deleteMany
+   */
+  export type FamilyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Families to delete
+     */
+    where?: FamilyWhereInput
+    /**
+     * Limit how many Families to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Family.alamat
+   */
+  export type Family$alamatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    where?: AddressWhereInput
+  }
+
+  /**
+   * Family.anggota
+   */
+  export type Family$anggotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    where?: CitizenWhereInput
+    orderBy?: CitizenOrderByWithRelationInput | CitizenOrderByWithRelationInput[]
+    cursor?: CitizenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CitizenScalarFieldEnum | CitizenScalarFieldEnum[]
+  }
+
+  /**
+   * Family without action
+   */
+  export type FamilyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Address
+   */
+
+  export type AggregateAddress = {
+    _count: AddressCountAggregateOutputType | null
+    _min: AddressMinAggregateOutputType | null
+    _max: AddressMaxAggregateOutputType | null
+  }
+
+  export type AddressMinAggregateOutputType = {
+    id: string | null
+    alamat: string | null
+    rt: string | null
+    rw: string | null
+    kelurahan: string | null
+    kecamatan: string | null
+    kabupaten: string | null
+    provinsi: string | null
+    kodePos: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AddressMaxAggregateOutputType = {
+    id: string | null
+    alamat: string | null
+    rt: string | null
+    rw: string | null
+    kelurahan: string | null
+    kecamatan: string | null
+    kabupaten: string | null
+    provinsi: string | null
+    kodePos: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AddressCountAggregateOutputType = {
+    id: number
+    alamat: number
+    rt: number
+    rw: number
+    kelurahan: number
+    kecamatan: number
+    kabupaten: number
+    provinsi: number
+    kodePos: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AddressMinAggregateInputType = {
+    id?: true
+    alamat?: true
+    rt?: true
+    rw?: true
+    kelurahan?: true
+    kecamatan?: true
+    kabupaten?: true
+    provinsi?: true
+    kodePos?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AddressMaxAggregateInputType = {
+    id?: true
+    alamat?: true
+    rt?: true
+    rw?: true
+    kelurahan?: true
+    kecamatan?: true
+    kabupaten?: true
+    provinsi?: true
+    kodePos?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AddressCountAggregateInputType = {
+    id?: true
+    alamat?: true
+    rt?: true
+    rw?: true
+    kelurahan?: true
+    kecamatan?: true
+    kabupaten?: true
+    provinsi?: true
+    kodePos?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AddressAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Address to aggregate.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Addresses
+    **/
+    _count?: true | AddressCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AddressMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AddressMaxAggregateInputType
+  }
+
+  export type GetAddressAggregateType<T extends AddressAggregateArgs> = {
+        [P in keyof T & keyof AggregateAddress]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAddress[P]>
+      : GetScalarType<T[P], AggregateAddress[P]>
+  }
+
+
+
+
+  export type AddressGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddressWhereInput
+    orderBy?: AddressOrderByWithAggregationInput | AddressOrderByWithAggregationInput[]
+    by: AddressScalarFieldEnum[] | AddressScalarFieldEnum
+    having?: AddressScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AddressCountAggregateInputType | true
+    _min?: AddressMinAggregateInputType
+    _max?: AddressMaxAggregateInputType
+  }
+
+  export type AddressGroupByOutputType = {
+    id: string
+    alamat: string
+    rt: string | null
+    rw: string | null
+    kelurahan: string | null
+    kecamatan: string | null
+    kabupaten: string | null
+    provinsi: string | null
+    kodePos: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AddressCountAggregateOutputType | null
+    _min: AddressMinAggregateOutputType | null
+    _max: AddressMaxAggregateOutputType | null
+  }
+
+  type GetAddressGroupByPayload<T extends AddressGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AddressGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AddressGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AddressGroupByOutputType[P]>
+            : GetScalarType<T[P], AddressGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AddressSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    kelurahan?: boolean
+    kecamatan?: boolean
+    kabupaten?: boolean
+    provinsi?: boolean
+    kodePos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    penduduk?: boolean | Address$pendudukArgs<ExtArgs>
+    keluarga?: boolean | Address$keluargaArgs<ExtArgs>
+    _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["address"]>
+
+  export type AddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    kelurahan?: boolean
+    kecamatan?: boolean
+    kabupaten?: boolean
+    provinsi?: boolean
+    kodePos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["address"]>
+
+  export type AddressSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    kelurahan?: boolean
+    kecamatan?: boolean
+    kabupaten?: boolean
+    provinsi?: boolean
+    kodePos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["address"]>
+
+  export type AddressSelectScalar = {
+    id?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    kelurahan?: boolean
+    kecamatan?: boolean
+    kabupaten?: boolean
+    provinsi?: boolean
+    kodePos?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alamat" | "rt" | "rw" | "kelurahan" | "kecamatan" | "kabupaten" | "provinsi" | "kodePos" | "createdAt" | "updatedAt", ExtArgs["result"]["address"]>
+  export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    penduduk?: boolean | Address$pendudukArgs<ExtArgs>
+    keluarga?: boolean | Address$keluargaArgs<ExtArgs>
+    _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AddressIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AddressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Address"
+    objects: {
+      penduduk: Prisma.$CitizenPayload<ExtArgs>[]
+      keluarga: Prisma.$FamilyPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      alamat: string
+      rt: string | null
+      rw: string | null
+      kelurahan: string | null
+      kecamatan: string | null
+      kabupaten: string | null
+      provinsi: string | null
+      kodePos: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["address"]>
+    composites: {}
+  }
+
+  type AddressGetPayload<S extends boolean | null | undefined | AddressDefaultArgs> = $Result.GetResult<Prisma.$AddressPayload, S>
+
+  type AddressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AddressFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AddressCountAggregateInputType | true
+    }
+
+  export interface AddressDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Address'], meta: { name: 'Address' } }
+    /**
+     * Find zero or one Address that matches the filter.
+     * @param {AddressFindUniqueArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AddressFindUniqueArgs>(args: SelectSubset<T, AddressFindUniqueArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Address that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AddressFindUniqueOrThrowArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AddressFindUniqueOrThrowArgs>(args: SelectSubset<T, AddressFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Address that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressFindFirstArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AddressFindFirstArgs>(args?: SelectSubset<T, AddressFindFirstArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Address that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressFindFirstOrThrowArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AddressFindFirstOrThrowArgs>(args?: SelectSubset<T, AddressFindFirstOrThrowArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Addresses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Addresses
+     * const addresses = await prisma.address.findMany()
+     * 
+     * // Get first 10 Addresses
+     * const addresses = await prisma.address.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const addressWithIdOnly = await prisma.address.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AddressFindManyArgs>(args?: SelectSubset<T, AddressFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Address.
+     * @param {AddressCreateArgs} args - Arguments to create a Address.
+     * @example
+     * // Create one Address
+     * const Address = await prisma.address.create({
+     *   data: {
+     *     // ... data to create a Address
+     *   }
+     * })
+     * 
+     */
+    create<T extends AddressCreateArgs>(args: SelectSubset<T, AddressCreateArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Addresses.
+     * @param {AddressCreateManyArgs} args - Arguments to create many Addresses.
+     * @example
+     * // Create many Addresses
+     * const address = await prisma.address.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AddressCreateManyArgs>(args?: SelectSubset<T, AddressCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Addresses and returns the data saved in the database.
+     * @param {AddressCreateManyAndReturnArgs} args - Arguments to create many Addresses.
+     * @example
+     * // Create many Addresses
+     * const address = await prisma.address.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Addresses and only return the `id`
+     * const addressWithIdOnly = await prisma.address.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AddressCreateManyAndReturnArgs>(args?: SelectSubset<T, AddressCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Address.
+     * @param {AddressDeleteArgs} args - Arguments to delete one Address.
+     * @example
+     * // Delete one Address
+     * const Address = await prisma.address.delete({
+     *   where: {
+     *     // ... filter to delete one Address
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AddressDeleteArgs>(args: SelectSubset<T, AddressDeleteArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Address.
+     * @param {AddressUpdateArgs} args - Arguments to update one Address.
+     * @example
+     * // Update one Address
+     * const address = await prisma.address.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AddressUpdateArgs>(args: SelectSubset<T, AddressUpdateArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Addresses.
+     * @param {AddressDeleteManyArgs} args - Arguments to filter Addresses to delete.
+     * @example
+     * // Delete a few Addresses
+     * const { count } = await prisma.address.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AddressDeleteManyArgs>(args?: SelectSubset<T, AddressDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Addresses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Addresses
+     * const address = await prisma.address.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AddressUpdateManyArgs>(args: SelectSubset<T, AddressUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Addresses and returns the data updated in the database.
+     * @param {AddressUpdateManyAndReturnArgs} args - Arguments to update many Addresses.
+     * @example
+     * // Update many Addresses
+     * const address = await prisma.address.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Addresses and only return the `id`
+     * const addressWithIdOnly = await prisma.address.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AddressUpdateManyAndReturnArgs>(args: SelectSubset<T, AddressUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Address.
+     * @param {AddressUpsertArgs} args - Arguments to update or create a Address.
+     * @example
+     * // Update or create a Address
+     * const address = await prisma.address.upsert({
+     *   create: {
+     *     // ... data to create a Address
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Address we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AddressUpsertArgs>(args: SelectSubset<T, AddressUpsertArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Addresses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressCountArgs} args - Arguments to filter Addresses to count.
+     * @example
+     * // Count the number of Addresses
+     * const count = await prisma.address.count({
+     *   where: {
+     *     // ... the filter for the Addresses we want to count
+     *   }
+     * })
+    **/
+    count<T extends AddressCountArgs>(
+      args?: Subset<T, AddressCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AddressCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Address.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AddressAggregateArgs>(args: Subset<T, AddressAggregateArgs>): Prisma.PrismaPromise<GetAddressAggregateType<T>>
+
+    /**
+     * Group by Address.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AddressGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AddressGroupByArgs['orderBy'] }
+        : { orderBy?: AddressGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AddressGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAddressGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Address model
+   */
+  readonly fields: AddressFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Address.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    penduduk<T extends Address$pendudukArgs<ExtArgs> = {}>(args?: Subset<T, Address$pendudukArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CitizenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    keluarga<T extends Address$keluargaArgs<ExtArgs> = {}>(args?: Subset<T, Address$keluargaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Address model
+   */
+  interface AddressFieldRefs {
+    readonly id: FieldRef<"Address", 'String'>
+    readonly alamat: FieldRef<"Address", 'String'>
+    readonly rt: FieldRef<"Address", 'String'>
+    readonly rw: FieldRef<"Address", 'String'>
+    readonly kelurahan: FieldRef<"Address", 'String'>
+    readonly kecamatan: FieldRef<"Address", 'String'>
+    readonly kabupaten: FieldRef<"Address", 'String'>
+    readonly provinsi: FieldRef<"Address", 'String'>
+    readonly kodePos: FieldRef<"Address", 'String'>
+    readonly createdAt: FieldRef<"Address", 'DateTime'>
+    readonly updatedAt: FieldRef<"Address", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Address findUnique
+   */
+  export type AddressFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where: AddressWhereUniqueInput
+  }
+
+  /**
+   * Address findUniqueOrThrow
+   */
+  export type AddressFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where: AddressWhereUniqueInput
+  }
+
+  /**
+   * Address findFirst
+   */
+  export type AddressFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Addresses.
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Addresses.
+     */
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
+  }
+
+  /**
+   * Address findFirstOrThrow
+   */
+  export type AddressFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Addresses.
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Addresses.
+     */
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
+  }
+
+  /**
+   * Address findMany
+   */
+  export type AddressFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Addresses to fetch.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Addresses.
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
+  }
+
+  /**
+   * Address create
+   */
+  export type AddressCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Address.
+     */
+    data: XOR<AddressCreateInput, AddressUncheckedCreateInput>
+  }
+
+  /**
+   * Address createMany
+   */
+  export type AddressCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Addresses.
+     */
+    data: AddressCreateManyInput | AddressCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Address createManyAndReturn
+   */
+  export type AddressCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * The data used to create many Addresses.
+     */
+    data: AddressCreateManyInput | AddressCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Address update
+   */
+  export type AddressUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Address.
+     */
+    data: XOR<AddressUpdateInput, AddressUncheckedUpdateInput>
+    /**
+     * Choose, which Address to update.
+     */
+    where: AddressWhereUniqueInput
+  }
+
+  /**
+   * Address updateMany
+   */
+  export type AddressUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Addresses.
+     */
+    data: XOR<AddressUpdateManyMutationInput, AddressUncheckedUpdateManyInput>
+    /**
+     * Filter which Addresses to update
+     */
+    where?: AddressWhereInput
+    /**
+     * Limit how many Addresses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Address updateManyAndReturn
+   */
+  export type AddressUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * The data used to update Addresses.
+     */
+    data: XOR<AddressUpdateManyMutationInput, AddressUncheckedUpdateManyInput>
+    /**
+     * Filter which Addresses to update
+     */
+    where?: AddressWhereInput
+    /**
+     * Limit how many Addresses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Address upsert
+   */
+  export type AddressUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Address to update in case it exists.
+     */
+    where: AddressWhereUniqueInput
+    /**
+     * In case the Address found by the `where` argument doesn't exist, create a new Address with this data.
+     */
+    create: XOR<AddressCreateInput, AddressUncheckedCreateInput>
+    /**
+     * In case the Address was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AddressUpdateInput, AddressUncheckedUpdateInput>
+  }
+
+  /**
+   * Address delete
+   */
+  export type AddressDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter which Address to delete.
+     */
+    where: AddressWhereUniqueInput
+  }
+
+  /**
+   * Address deleteMany
+   */
+  export type AddressDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Addresses to delete
+     */
+    where?: AddressWhereInput
+    /**
+     * Limit how many Addresses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Address.penduduk
+   */
+  export type Address$pendudukArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Citizen
+     */
+    select?: CitizenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Citizen
+     */
+    omit?: CitizenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CitizenInclude<ExtArgs> | null
+    where?: CitizenWhereInput
+    orderBy?: CitizenOrderByWithRelationInput | CitizenOrderByWithRelationInput[]
+    cursor?: CitizenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CitizenScalarFieldEnum | CitizenScalarFieldEnum[]
+  }
+
+  /**
+   * Address.keluarga
+   */
+  export type Address$keluargaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Family
+     */
+    select?: FamilySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Family
+     */
+    omit?: FamilyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyInclude<ExtArgs> | null
+    where?: FamilyWhereInput
+    orderBy?: FamilyOrderByWithRelationInput | FamilyOrderByWithRelationInput[]
+    cursor?: FamilyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FamilyScalarFieldEnum | FamilyScalarFieldEnum[]
+  }
+
+  /**
+   * Address without action
+   */
+  export type AddressDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5636,6 +9676,60 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+  export const CitizenScalarFieldEnum: {
+    id: 'id',
+    nik: 'nik',
+    nama: 'nama',
+    jenisKelamin: 'jenisKelamin',
+    tempatLahir: 'tempatLahir',
+    tanggalLahir: 'tanggalLahir',
+    agama: 'agama',
+    pendidikan: 'pendidikan',
+    pekerjaan: 'pekerjaan',
+    statusPerkawinan: 'statusPerkawinan',
+    kewarganegaraan: 'kewarganegaraan',
+    noHp: 'noHp',
+    email: 'email',
+    alamatId: 'alamatId',
+    keluargaId: 'keluargaId',
+    statusDalamKeluarga: 'statusDalamKeluarga',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CitizenScalarFieldEnum = (typeof CitizenScalarFieldEnum)[keyof typeof CitizenScalarFieldEnum]
+
+
+  export const FamilyScalarFieldEnum: {
+    id: 'id',
+    noKK: 'noKK',
+    kepalaNIK: 'kepalaNIK',
+    namaKepala: 'namaKepala',
+    alamatId: 'alamatId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FamilyScalarFieldEnum = (typeof FamilyScalarFieldEnum)[keyof typeof FamilyScalarFieldEnum]
+
+
+  export const AddressScalarFieldEnum: {
+    id: 'id',
+    alamat: 'alamat',
+    rt: 'rt',
+    rw: 'rw',
+    kelurahan: 'kelurahan',
+    kecamatan: 'kecamatan',
+    kabupaten: 'kabupaten',
+    provinsi: 'provinsi',
+    kodePos: 'kodePos',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -5697,6 +9791,90 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender[]'
+   */
+  export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Religion'
+   */
+  export type EnumReligionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Religion'>
+    
+
+
+  /**
+   * Reference to a field of type 'Religion[]'
+   */
+  export type ListEnumReligionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Religion[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Education'
+   */
+  export type EnumEducationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Education'>
+    
+
+
+  /**
+   * Reference to a field of type 'Education[]'
+   */
+  export type ListEnumEducationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Education[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Occupation'
+   */
+  export type EnumOccupationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Occupation'>
+    
+
+
+  /**
+   * Reference to a field of type 'Occupation[]'
+   */
+  export type ListEnumOccupationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Occupation[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MaritalStatus'
+   */
+  export type EnumMaritalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MaritalStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'MaritalStatus[]'
+   */
+  export type ListEnumMaritalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MaritalStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FamilyRole'
+   */
+  export type EnumFamilyRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FamilyRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'FamilyRole[]'
+   */
+  export type ListEnumFamilyRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FamilyRole[]'>
     
 
 
@@ -6005,6 +10183,285 @@ export namespace Prisma {
     expiresAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
+  }
+
+  export type CitizenWhereInput = {
+    AND?: CitizenWhereInput | CitizenWhereInput[]
+    OR?: CitizenWhereInput[]
+    NOT?: CitizenWhereInput | CitizenWhereInput[]
+    id?: StringFilter<"Citizen"> | string
+    nik?: StringFilter<"Citizen"> | string
+    nama?: StringFilter<"Citizen"> | string
+    jenisKelamin?: EnumGenderFilter<"Citizen"> | $Enums.Gender
+    tempatLahir?: StringNullableFilter<"Citizen"> | string | null
+    tanggalLahir?: DateTimeNullableFilter<"Citizen"> | Date | string | null
+    agama?: EnumReligionNullableFilter<"Citizen"> | $Enums.Religion | null
+    pendidikan?: EnumEducationNullableFilter<"Citizen"> | $Enums.Education | null
+    pekerjaan?: EnumOccupationNullableFilter<"Citizen"> | $Enums.Occupation | null
+    statusPerkawinan?: EnumMaritalStatusNullableFilter<"Citizen"> | $Enums.MaritalStatus | null
+    kewarganegaraan?: StringNullableFilter<"Citizen"> | string | null
+    noHp?: StringNullableFilter<"Citizen"> | string | null
+    email?: StringNullableFilter<"Citizen"> | string | null
+    alamatId?: StringNullableFilter<"Citizen"> | string | null
+    keluargaId?: StringNullableFilter<"Citizen"> | string | null
+    statusDalamKeluarga?: EnumFamilyRoleNullableFilter<"Citizen"> | $Enums.FamilyRole | null
+    createdAt?: DateTimeFilter<"Citizen"> | Date | string
+    updatedAt?: DateTimeFilter<"Citizen"> | Date | string
+    alamat?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+    keluarga?: XOR<FamilyNullableScalarRelationFilter, FamilyWhereInput> | null
+  }
+
+  export type CitizenOrderByWithRelationInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    jenisKelamin?: SortOrder
+    tempatLahir?: SortOrderInput | SortOrder
+    tanggalLahir?: SortOrderInput | SortOrder
+    agama?: SortOrderInput | SortOrder
+    pendidikan?: SortOrderInput | SortOrder
+    pekerjaan?: SortOrderInput | SortOrder
+    statusPerkawinan?: SortOrderInput | SortOrder
+    kewarganegaraan?: SortOrderInput | SortOrder
+    noHp?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    alamatId?: SortOrderInput | SortOrder
+    keluargaId?: SortOrderInput | SortOrder
+    statusDalamKeluarga?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    alamat?: AddressOrderByWithRelationInput
+    keluarga?: FamilyOrderByWithRelationInput
+  }
+
+  export type CitizenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    nik?: string
+    AND?: CitizenWhereInput | CitizenWhereInput[]
+    OR?: CitizenWhereInput[]
+    NOT?: CitizenWhereInput | CitizenWhereInput[]
+    nama?: StringFilter<"Citizen"> | string
+    jenisKelamin?: EnumGenderFilter<"Citizen"> | $Enums.Gender
+    tempatLahir?: StringNullableFilter<"Citizen"> | string | null
+    tanggalLahir?: DateTimeNullableFilter<"Citizen"> | Date | string | null
+    agama?: EnumReligionNullableFilter<"Citizen"> | $Enums.Religion | null
+    pendidikan?: EnumEducationNullableFilter<"Citizen"> | $Enums.Education | null
+    pekerjaan?: EnumOccupationNullableFilter<"Citizen"> | $Enums.Occupation | null
+    statusPerkawinan?: EnumMaritalStatusNullableFilter<"Citizen"> | $Enums.MaritalStatus | null
+    kewarganegaraan?: StringNullableFilter<"Citizen"> | string | null
+    noHp?: StringNullableFilter<"Citizen"> | string | null
+    email?: StringNullableFilter<"Citizen"> | string | null
+    alamatId?: StringNullableFilter<"Citizen"> | string | null
+    keluargaId?: StringNullableFilter<"Citizen"> | string | null
+    statusDalamKeluarga?: EnumFamilyRoleNullableFilter<"Citizen"> | $Enums.FamilyRole | null
+    createdAt?: DateTimeFilter<"Citizen"> | Date | string
+    updatedAt?: DateTimeFilter<"Citizen"> | Date | string
+    alamat?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+    keluarga?: XOR<FamilyNullableScalarRelationFilter, FamilyWhereInput> | null
+  }, "id" | "nik">
+
+  export type CitizenOrderByWithAggregationInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    jenisKelamin?: SortOrder
+    tempatLahir?: SortOrderInput | SortOrder
+    tanggalLahir?: SortOrderInput | SortOrder
+    agama?: SortOrderInput | SortOrder
+    pendidikan?: SortOrderInput | SortOrder
+    pekerjaan?: SortOrderInput | SortOrder
+    statusPerkawinan?: SortOrderInput | SortOrder
+    kewarganegaraan?: SortOrderInput | SortOrder
+    noHp?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    alamatId?: SortOrderInput | SortOrder
+    keluargaId?: SortOrderInput | SortOrder
+    statusDalamKeluarga?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CitizenCountOrderByAggregateInput
+    _max?: CitizenMaxOrderByAggregateInput
+    _min?: CitizenMinOrderByAggregateInput
+  }
+
+  export type CitizenScalarWhereWithAggregatesInput = {
+    AND?: CitizenScalarWhereWithAggregatesInput | CitizenScalarWhereWithAggregatesInput[]
+    OR?: CitizenScalarWhereWithAggregatesInput[]
+    NOT?: CitizenScalarWhereWithAggregatesInput | CitizenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Citizen"> | string
+    nik?: StringWithAggregatesFilter<"Citizen"> | string
+    nama?: StringWithAggregatesFilter<"Citizen"> | string
+    jenisKelamin?: EnumGenderWithAggregatesFilter<"Citizen"> | $Enums.Gender
+    tempatLahir?: StringNullableWithAggregatesFilter<"Citizen"> | string | null
+    tanggalLahir?: DateTimeNullableWithAggregatesFilter<"Citizen"> | Date | string | null
+    agama?: EnumReligionNullableWithAggregatesFilter<"Citizen"> | $Enums.Religion | null
+    pendidikan?: EnumEducationNullableWithAggregatesFilter<"Citizen"> | $Enums.Education | null
+    pekerjaan?: EnumOccupationNullableWithAggregatesFilter<"Citizen"> | $Enums.Occupation | null
+    statusPerkawinan?: EnumMaritalStatusNullableWithAggregatesFilter<"Citizen"> | $Enums.MaritalStatus | null
+    kewarganegaraan?: StringNullableWithAggregatesFilter<"Citizen"> | string | null
+    noHp?: StringNullableWithAggregatesFilter<"Citizen"> | string | null
+    email?: StringNullableWithAggregatesFilter<"Citizen"> | string | null
+    alamatId?: StringNullableWithAggregatesFilter<"Citizen"> | string | null
+    keluargaId?: StringNullableWithAggregatesFilter<"Citizen"> | string | null
+    statusDalamKeluarga?: EnumFamilyRoleNullableWithAggregatesFilter<"Citizen"> | $Enums.FamilyRole | null
+    createdAt?: DateTimeWithAggregatesFilter<"Citizen"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Citizen"> | Date | string
+  }
+
+  export type FamilyWhereInput = {
+    AND?: FamilyWhereInput | FamilyWhereInput[]
+    OR?: FamilyWhereInput[]
+    NOT?: FamilyWhereInput | FamilyWhereInput[]
+    id?: StringFilter<"Family"> | string
+    noKK?: StringFilter<"Family"> | string
+    kepalaNIK?: StringNullableFilter<"Family"> | string | null
+    namaKepala?: StringNullableFilter<"Family"> | string | null
+    alamatId?: StringNullableFilter<"Family"> | string | null
+    createdAt?: DateTimeFilter<"Family"> | Date | string
+    updatedAt?: DateTimeFilter<"Family"> | Date | string
+    alamat?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+    anggota?: CitizenListRelationFilter
+  }
+
+  export type FamilyOrderByWithRelationInput = {
+    id?: SortOrder
+    noKK?: SortOrder
+    kepalaNIK?: SortOrderInput | SortOrder
+    namaKepala?: SortOrderInput | SortOrder
+    alamatId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    alamat?: AddressOrderByWithRelationInput
+    anggota?: CitizenOrderByRelationAggregateInput
+  }
+
+  export type FamilyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    noKK?: string
+    AND?: FamilyWhereInput | FamilyWhereInput[]
+    OR?: FamilyWhereInput[]
+    NOT?: FamilyWhereInput | FamilyWhereInput[]
+    kepalaNIK?: StringNullableFilter<"Family"> | string | null
+    namaKepala?: StringNullableFilter<"Family"> | string | null
+    alamatId?: StringNullableFilter<"Family"> | string | null
+    createdAt?: DateTimeFilter<"Family"> | Date | string
+    updatedAt?: DateTimeFilter<"Family"> | Date | string
+    alamat?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+    anggota?: CitizenListRelationFilter
+  }, "id" | "noKK">
+
+  export type FamilyOrderByWithAggregationInput = {
+    id?: SortOrder
+    noKK?: SortOrder
+    kepalaNIK?: SortOrderInput | SortOrder
+    namaKepala?: SortOrderInput | SortOrder
+    alamatId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FamilyCountOrderByAggregateInput
+    _max?: FamilyMaxOrderByAggregateInput
+    _min?: FamilyMinOrderByAggregateInput
+  }
+
+  export type FamilyScalarWhereWithAggregatesInput = {
+    AND?: FamilyScalarWhereWithAggregatesInput | FamilyScalarWhereWithAggregatesInput[]
+    OR?: FamilyScalarWhereWithAggregatesInput[]
+    NOT?: FamilyScalarWhereWithAggregatesInput | FamilyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Family"> | string
+    noKK?: StringWithAggregatesFilter<"Family"> | string
+    kepalaNIK?: StringNullableWithAggregatesFilter<"Family"> | string | null
+    namaKepala?: StringNullableWithAggregatesFilter<"Family"> | string | null
+    alamatId?: StringNullableWithAggregatesFilter<"Family"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Family"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Family"> | Date | string
+  }
+
+  export type AddressWhereInput = {
+    AND?: AddressWhereInput | AddressWhereInput[]
+    OR?: AddressWhereInput[]
+    NOT?: AddressWhereInput | AddressWhereInput[]
+    id?: StringFilter<"Address"> | string
+    alamat?: StringFilter<"Address"> | string
+    rt?: StringNullableFilter<"Address"> | string | null
+    rw?: StringNullableFilter<"Address"> | string | null
+    kelurahan?: StringNullableFilter<"Address"> | string | null
+    kecamatan?: StringNullableFilter<"Address"> | string | null
+    kabupaten?: StringNullableFilter<"Address"> | string | null
+    provinsi?: StringNullableFilter<"Address"> | string | null
+    kodePos?: StringNullableFilter<"Address"> | string | null
+    createdAt?: DateTimeFilter<"Address"> | Date | string
+    updatedAt?: DateTimeFilter<"Address"> | Date | string
+    penduduk?: CitizenListRelationFilter
+    keluarga?: FamilyListRelationFilter
+  }
+
+  export type AddressOrderByWithRelationInput = {
+    id?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrderInput | SortOrder
+    rw?: SortOrderInput | SortOrder
+    kelurahan?: SortOrderInput | SortOrder
+    kecamatan?: SortOrderInput | SortOrder
+    kabupaten?: SortOrderInput | SortOrder
+    provinsi?: SortOrderInput | SortOrder
+    kodePos?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    penduduk?: CitizenOrderByRelationAggregateInput
+    keluarga?: FamilyOrderByRelationAggregateInput
+  }
+
+  export type AddressWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AddressWhereInput | AddressWhereInput[]
+    OR?: AddressWhereInput[]
+    NOT?: AddressWhereInput | AddressWhereInput[]
+    alamat?: StringFilter<"Address"> | string
+    rt?: StringNullableFilter<"Address"> | string | null
+    rw?: StringNullableFilter<"Address"> | string | null
+    kelurahan?: StringNullableFilter<"Address"> | string | null
+    kecamatan?: StringNullableFilter<"Address"> | string | null
+    kabupaten?: StringNullableFilter<"Address"> | string | null
+    provinsi?: StringNullableFilter<"Address"> | string | null
+    kodePos?: StringNullableFilter<"Address"> | string | null
+    createdAt?: DateTimeFilter<"Address"> | Date | string
+    updatedAt?: DateTimeFilter<"Address"> | Date | string
+    penduduk?: CitizenListRelationFilter
+    keluarga?: FamilyListRelationFilter
+  }, "id">
+
+  export type AddressOrderByWithAggregationInput = {
+    id?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrderInput | SortOrder
+    rw?: SortOrderInput | SortOrder
+    kelurahan?: SortOrderInput | SortOrder
+    kecamatan?: SortOrderInput | SortOrder
+    kabupaten?: SortOrderInput | SortOrder
+    provinsi?: SortOrderInput | SortOrder
+    kodePos?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AddressCountOrderByAggregateInput
+    _max?: AddressMaxOrderByAggregateInput
+    _min?: AddressMinOrderByAggregateInput
+  }
+
+  export type AddressScalarWhereWithAggregatesInput = {
+    AND?: AddressScalarWhereWithAggregatesInput | AddressScalarWhereWithAggregatesInput[]
+    OR?: AddressScalarWhereWithAggregatesInput[]
+    NOT?: AddressScalarWhereWithAggregatesInput | AddressScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Address"> | string
+    alamat?: StringWithAggregatesFilter<"Address"> | string
+    rt?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    rw?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    kelurahan?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    kecamatan?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    kabupaten?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    provinsi?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    kodePos?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Address"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Address"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -6335,6 +10792,330 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CitizenCreateInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    alamat?: AddressCreateNestedOneWithoutPendudukInput
+    keluarga?: FamilyCreateNestedOneWithoutAnggotaInput
+  }
+
+  export type CitizenUncheckedCreateInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    alamatId?: string | null
+    keluargaId?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CitizenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    alamat?: AddressUpdateOneWithoutPendudukNestedInput
+    keluarga?: FamilyUpdateOneWithoutAnggotaNestedInput
+  }
+
+  export type CitizenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    keluargaId?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CitizenCreateManyInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    alamatId?: string | null
+    keluargaId?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CitizenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CitizenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    keluargaId?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCreateInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    alamat?: AddressCreateNestedOneWithoutKeluargaInput
+    anggota?: CitizenCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type FamilyUncheckedCreateInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    alamatId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    anggota?: CitizenUncheckedCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type FamilyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    alamat?: AddressUpdateOneWithoutKeluargaNestedInput
+    anggota?: CitizenUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type FamilyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggota?: CitizenUncheckedUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type FamilyCreateManyInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    alamatId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FamilyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddressCreateInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    penduduk?: CitizenCreateNestedManyWithoutAlamatInput
+    keluarga?: FamilyCreateNestedManyWithoutAlamatInput
+  }
+
+  export type AddressUncheckedCreateInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    penduduk?: CitizenUncheckedCreateNestedManyWithoutAlamatInput
+    keluarga?: FamilyUncheckedCreateNestedManyWithoutAlamatInput
+  }
+
+  export type AddressUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    penduduk?: CitizenUpdateManyWithoutAlamatNestedInput
+    keluarga?: FamilyUpdateManyWithoutAlamatNestedInput
+  }
+
+  export type AddressUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    penduduk?: CitizenUncheckedUpdateManyWithoutAlamatNestedInput
+    keluarga?: FamilyUncheckedUpdateManyWithoutAlamatNestedInput
+  }
+
+  export type AddressCreateManyInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AddressUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddressUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -6632,6 +11413,273 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
+  export type EnumReligionNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Religion | EnumReligionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumReligionNullableFilter<$PrismaModel> | $Enums.Religion | null
+  }
+
+  export type EnumEducationNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Education | EnumEducationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumEducationNullableFilter<$PrismaModel> | $Enums.Education | null
+  }
+
+  export type EnumOccupationNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Occupation | EnumOccupationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOccupationNullableFilter<$PrismaModel> | $Enums.Occupation | null
+  }
+
+  export type EnumMaritalStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaritalStatus | EnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaritalStatusNullableFilter<$PrismaModel> | $Enums.MaritalStatus | null
+  }
+
+  export type EnumFamilyRoleNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.FamilyRole | EnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFamilyRoleNullableFilter<$PrismaModel> | $Enums.FamilyRole | null
+  }
+
+  export type AddressNullableScalarRelationFilter = {
+    is?: AddressWhereInput | null
+    isNot?: AddressWhereInput | null
+  }
+
+  export type FamilyNullableScalarRelationFilter = {
+    is?: FamilyWhereInput | null
+    isNot?: FamilyWhereInput | null
+  }
+
+  export type CitizenCountOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    jenisKelamin?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    kewarganegaraan?: SortOrder
+    noHp?: SortOrder
+    email?: SortOrder
+    alamatId?: SortOrder
+    keluargaId?: SortOrder
+    statusDalamKeluarga?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CitizenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    jenisKelamin?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    kewarganegaraan?: SortOrder
+    noHp?: SortOrder
+    email?: SortOrder
+    alamatId?: SortOrder
+    keluargaId?: SortOrder
+    statusDalamKeluarga?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CitizenMinOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    jenisKelamin?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    kewarganegaraan?: SortOrder
+    noHp?: SortOrder
+    email?: SortOrder
+    alamatId?: SortOrder
+    keluargaId?: SortOrder
+    statusDalamKeluarga?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
+  export type EnumReligionNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Religion | EnumReligionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumReligionNullableWithAggregatesFilter<$PrismaModel> | $Enums.Religion | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumReligionNullableFilter<$PrismaModel>
+    _max?: NestedEnumReligionNullableFilter<$PrismaModel>
+  }
+
+  export type EnumEducationNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Education | EnumEducationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumEducationNullableWithAggregatesFilter<$PrismaModel> | $Enums.Education | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumEducationNullableFilter<$PrismaModel>
+    _max?: NestedEnumEducationNullableFilter<$PrismaModel>
+  }
+
+  export type EnumOccupationNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Occupation | EnumOccupationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOccupationNullableWithAggregatesFilter<$PrismaModel> | $Enums.Occupation | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumOccupationNullableFilter<$PrismaModel>
+    _max?: NestedEnumOccupationNullableFilter<$PrismaModel>
+  }
+
+  export type EnumMaritalStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaritalStatus | EnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaritalStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaritalStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumMaritalStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumMaritalStatusNullableFilter<$PrismaModel>
+  }
+
+  export type EnumFamilyRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FamilyRole | EnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFamilyRoleNullableWithAggregatesFilter<$PrismaModel> | $Enums.FamilyRole | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumFamilyRoleNullableFilter<$PrismaModel>
+    _max?: NestedEnumFamilyRoleNullableFilter<$PrismaModel>
+  }
+
+  export type CitizenListRelationFilter = {
+    every?: CitizenWhereInput
+    some?: CitizenWhereInput
+    none?: CitizenWhereInput
+  }
+
+  export type CitizenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FamilyCountOrderByAggregateInput = {
+    id?: SortOrder
+    noKK?: SortOrder
+    kepalaNIK?: SortOrder
+    namaKepala?: SortOrder
+    alamatId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FamilyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    noKK?: SortOrder
+    kepalaNIK?: SortOrder
+    namaKepala?: SortOrder
+    alamatId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FamilyMinOrderByAggregateInput = {
+    id?: SortOrder
+    noKK?: SortOrder
+    kepalaNIK?: SortOrder
+    namaKepala?: SortOrder
+    alamatId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FamilyListRelationFilter = {
+    every?: FamilyWhereInput
+    some?: FamilyWhereInput
+    none?: FamilyWhereInput
+  }
+
+  export type FamilyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AddressCountOrderByAggregateInput = {
+    id?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    kelurahan?: SortOrder
+    kecamatan?: SortOrder
+    kabupaten?: SortOrder
+    provinsi?: SortOrder
+    kodePos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AddressMaxOrderByAggregateInput = {
+    id?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    kelurahan?: SortOrder
+    kecamatan?: SortOrder
+    kabupaten?: SortOrder
+    provinsi?: SortOrder
+    kodePos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AddressMinOrderByAggregateInput = {
+    id?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    kelurahan?: SortOrder
+    kecamatan?: SortOrder
+    kabupaten?: SortOrder
+    provinsi?: SortOrder
+    kodePos?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -6762,6 +11810,204 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type AddressCreateNestedOneWithoutPendudukInput = {
+    create?: XOR<AddressCreateWithoutPendudukInput, AddressUncheckedCreateWithoutPendudukInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutPendudukInput
+    connect?: AddressWhereUniqueInput
+  }
+
+  export type FamilyCreateNestedOneWithoutAnggotaInput = {
+    create?: XOR<FamilyCreateWithoutAnggotaInput, FamilyUncheckedCreateWithoutAnggotaInput>
+    connectOrCreate?: FamilyCreateOrConnectWithoutAnggotaInput
+    connect?: FamilyWhereUniqueInput
+  }
+
+  export type EnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender
+  }
+
+  export type NullableEnumReligionFieldUpdateOperationsInput = {
+    set?: $Enums.Religion | null
+  }
+
+  export type NullableEnumEducationFieldUpdateOperationsInput = {
+    set?: $Enums.Education | null
+  }
+
+  export type NullableEnumOccupationFieldUpdateOperationsInput = {
+    set?: $Enums.Occupation | null
+  }
+
+  export type NullableEnumMaritalStatusFieldUpdateOperationsInput = {
+    set?: $Enums.MaritalStatus | null
+  }
+
+  export type NullableEnumFamilyRoleFieldUpdateOperationsInput = {
+    set?: $Enums.FamilyRole | null
+  }
+
+  export type AddressUpdateOneWithoutPendudukNestedInput = {
+    create?: XOR<AddressCreateWithoutPendudukInput, AddressUncheckedCreateWithoutPendudukInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutPendudukInput
+    upsert?: AddressUpsertWithoutPendudukInput
+    disconnect?: AddressWhereInput | boolean
+    delete?: AddressWhereInput | boolean
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutPendudukInput, AddressUpdateWithoutPendudukInput>, AddressUncheckedUpdateWithoutPendudukInput>
+  }
+
+  export type FamilyUpdateOneWithoutAnggotaNestedInput = {
+    create?: XOR<FamilyCreateWithoutAnggotaInput, FamilyUncheckedCreateWithoutAnggotaInput>
+    connectOrCreate?: FamilyCreateOrConnectWithoutAnggotaInput
+    upsert?: FamilyUpsertWithoutAnggotaInput
+    disconnect?: FamilyWhereInput | boolean
+    delete?: FamilyWhereInput | boolean
+    connect?: FamilyWhereUniqueInput
+    update?: XOR<XOR<FamilyUpdateToOneWithWhereWithoutAnggotaInput, FamilyUpdateWithoutAnggotaInput>, FamilyUncheckedUpdateWithoutAnggotaInput>
+  }
+
+  export type AddressCreateNestedOneWithoutKeluargaInput = {
+    create?: XOR<AddressCreateWithoutKeluargaInput, AddressUncheckedCreateWithoutKeluargaInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutKeluargaInput
+    connect?: AddressWhereUniqueInput
+  }
+
+  export type CitizenCreateNestedManyWithoutKeluargaInput = {
+    create?: XOR<CitizenCreateWithoutKeluargaInput, CitizenUncheckedCreateWithoutKeluargaInput> | CitizenCreateWithoutKeluargaInput[] | CitizenUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutKeluargaInput | CitizenCreateOrConnectWithoutKeluargaInput[]
+    createMany?: CitizenCreateManyKeluargaInputEnvelope
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+  }
+
+  export type CitizenUncheckedCreateNestedManyWithoutKeluargaInput = {
+    create?: XOR<CitizenCreateWithoutKeluargaInput, CitizenUncheckedCreateWithoutKeluargaInput> | CitizenCreateWithoutKeluargaInput[] | CitizenUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutKeluargaInput | CitizenCreateOrConnectWithoutKeluargaInput[]
+    createMany?: CitizenCreateManyKeluargaInputEnvelope
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+  }
+
+  export type AddressUpdateOneWithoutKeluargaNestedInput = {
+    create?: XOR<AddressCreateWithoutKeluargaInput, AddressUncheckedCreateWithoutKeluargaInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutKeluargaInput
+    upsert?: AddressUpsertWithoutKeluargaInput
+    disconnect?: AddressWhereInput | boolean
+    delete?: AddressWhereInput | boolean
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutKeluargaInput, AddressUpdateWithoutKeluargaInput>, AddressUncheckedUpdateWithoutKeluargaInput>
+  }
+
+  export type CitizenUpdateManyWithoutKeluargaNestedInput = {
+    create?: XOR<CitizenCreateWithoutKeluargaInput, CitizenUncheckedCreateWithoutKeluargaInput> | CitizenCreateWithoutKeluargaInput[] | CitizenUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutKeluargaInput | CitizenCreateOrConnectWithoutKeluargaInput[]
+    upsert?: CitizenUpsertWithWhereUniqueWithoutKeluargaInput | CitizenUpsertWithWhereUniqueWithoutKeluargaInput[]
+    createMany?: CitizenCreateManyKeluargaInputEnvelope
+    set?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    disconnect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    delete?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    update?: CitizenUpdateWithWhereUniqueWithoutKeluargaInput | CitizenUpdateWithWhereUniqueWithoutKeluargaInput[]
+    updateMany?: CitizenUpdateManyWithWhereWithoutKeluargaInput | CitizenUpdateManyWithWhereWithoutKeluargaInput[]
+    deleteMany?: CitizenScalarWhereInput | CitizenScalarWhereInput[]
+  }
+
+  export type CitizenUncheckedUpdateManyWithoutKeluargaNestedInput = {
+    create?: XOR<CitizenCreateWithoutKeluargaInput, CitizenUncheckedCreateWithoutKeluargaInput> | CitizenCreateWithoutKeluargaInput[] | CitizenUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutKeluargaInput | CitizenCreateOrConnectWithoutKeluargaInput[]
+    upsert?: CitizenUpsertWithWhereUniqueWithoutKeluargaInput | CitizenUpsertWithWhereUniqueWithoutKeluargaInput[]
+    createMany?: CitizenCreateManyKeluargaInputEnvelope
+    set?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    disconnect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    delete?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    update?: CitizenUpdateWithWhereUniqueWithoutKeluargaInput | CitizenUpdateWithWhereUniqueWithoutKeluargaInput[]
+    updateMany?: CitizenUpdateManyWithWhereWithoutKeluargaInput | CitizenUpdateManyWithWhereWithoutKeluargaInput[]
+    deleteMany?: CitizenScalarWhereInput | CitizenScalarWhereInput[]
+  }
+
+  export type CitizenCreateNestedManyWithoutAlamatInput = {
+    create?: XOR<CitizenCreateWithoutAlamatInput, CitizenUncheckedCreateWithoutAlamatInput> | CitizenCreateWithoutAlamatInput[] | CitizenUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutAlamatInput | CitizenCreateOrConnectWithoutAlamatInput[]
+    createMany?: CitizenCreateManyAlamatInputEnvelope
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+  }
+
+  export type FamilyCreateNestedManyWithoutAlamatInput = {
+    create?: XOR<FamilyCreateWithoutAlamatInput, FamilyUncheckedCreateWithoutAlamatInput> | FamilyCreateWithoutAlamatInput[] | FamilyUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: FamilyCreateOrConnectWithoutAlamatInput | FamilyCreateOrConnectWithoutAlamatInput[]
+    createMany?: FamilyCreateManyAlamatInputEnvelope
+    connect?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+  }
+
+  export type CitizenUncheckedCreateNestedManyWithoutAlamatInput = {
+    create?: XOR<CitizenCreateWithoutAlamatInput, CitizenUncheckedCreateWithoutAlamatInput> | CitizenCreateWithoutAlamatInput[] | CitizenUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutAlamatInput | CitizenCreateOrConnectWithoutAlamatInput[]
+    createMany?: CitizenCreateManyAlamatInputEnvelope
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+  }
+
+  export type FamilyUncheckedCreateNestedManyWithoutAlamatInput = {
+    create?: XOR<FamilyCreateWithoutAlamatInput, FamilyUncheckedCreateWithoutAlamatInput> | FamilyCreateWithoutAlamatInput[] | FamilyUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: FamilyCreateOrConnectWithoutAlamatInput | FamilyCreateOrConnectWithoutAlamatInput[]
+    createMany?: FamilyCreateManyAlamatInputEnvelope
+    connect?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+  }
+
+  export type CitizenUpdateManyWithoutAlamatNestedInput = {
+    create?: XOR<CitizenCreateWithoutAlamatInput, CitizenUncheckedCreateWithoutAlamatInput> | CitizenCreateWithoutAlamatInput[] | CitizenUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutAlamatInput | CitizenCreateOrConnectWithoutAlamatInput[]
+    upsert?: CitizenUpsertWithWhereUniqueWithoutAlamatInput | CitizenUpsertWithWhereUniqueWithoutAlamatInput[]
+    createMany?: CitizenCreateManyAlamatInputEnvelope
+    set?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    disconnect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    delete?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    update?: CitizenUpdateWithWhereUniqueWithoutAlamatInput | CitizenUpdateWithWhereUniqueWithoutAlamatInput[]
+    updateMany?: CitizenUpdateManyWithWhereWithoutAlamatInput | CitizenUpdateManyWithWhereWithoutAlamatInput[]
+    deleteMany?: CitizenScalarWhereInput | CitizenScalarWhereInput[]
+  }
+
+  export type FamilyUpdateManyWithoutAlamatNestedInput = {
+    create?: XOR<FamilyCreateWithoutAlamatInput, FamilyUncheckedCreateWithoutAlamatInput> | FamilyCreateWithoutAlamatInput[] | FamilyUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: FamilyCreateOrConnectWithoutAlamatInput | FamilyCreateOrConnectWithoutAlamatInput[]
+    upsert?: FamilyUpsertWithWhereUniqueWithoutAlamatInput | FamilyUpsertWithWhereUniqueWithoutAlamatInput[]
+    createMany?: FamilyCreateManyAlamatInputEnvelope
+    set?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    disconnect?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    delete?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    connect?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    update?: FamilyUpdateWithWhereUniqueWithoutAlamatInput | FamilyUpdateWithWhereUniqueWithoutAlamatInput[]
+    updateMany?: FamilyUpdateManyWithWhereWithoutAlamatInput | FamilyUpdateManyWithWhereWithoutAlamatInput[]
+    deleteMany?: FamilyScalarWhereInput | FamilyScalarWhereInput[]
+  }
+
+  export type CitizenUncheckedUpdateManyWithoutAlamatNestedInput = {
+    create?: XOR<CitizenCreateWithoutAlamatInput, CitizenUncheckedCreateWithoutAlamatInput> | CitizenCreateWithoutAlamatInput[] | CitizenUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: CitizenCreateOrConnectWithoutAlamatInput | CitizenCreateOrConnectWithoutAlamatInput[]
+    upsert?: CitizenUpsertWithWhereUniqueWithoutAlamatInput | CitizenUpsertWithWhereUniqueWithoutAlamatInput[]
+    createMany?: CitizenCreateManyAlamatInputEnvelope
+    set?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    disconnect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    delete?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    connect?: CitizenWhereUniqueInput | CitizenWhereUniqueInput[]
+    update?: CitizenUpdateWithWhereUniqueWithoutAlamatInput | CitizenUpdateWithWhereUniqueWithoutAlamatInput[]
+    updateMany?: CitizenUpdateManyWithWhereWithoutAlamatInput | CitizenUpdateManyWithWhereWithoutAlamatInput[]
+    deleteMany?: CitizenScalarWhereInput | CitizenScalarWhereInput[]
+  }
+
+  export type FamilyUncheckedUpdateManyWithoutAlamatNestedInput = {
+    create?: XOR<FamilyCreateWithoutAlamatInput, FamilyUncheckedCreateWithoutAlamatInput> | FamilyCreateWithoutAlamatInput[] | FamilyUncheckedCreateWithoutAlamatInput[]
+    connectOrCreate?: FamilyCreateOrConnectWithoutAlamatInput | FamilyCreateOrConnectWithoutAlamatInput[]
+    upsert?: FamilyUpsertWithWhereUniqueWithoutAlamatInput | FamilyUpsertWithWhereUniqueWithoutAlamatInput[]
+    createMany?: FamilyCreateManyAlamatInputEnvelope
+    set?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    disconnect?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    delete?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    connect?: FamilyWhereUniqueInput | FamilyWhereUniqueInput[]
+    update?: FamilyUpdateWithWhereUniqueWithoutAlamatInput | FamilyUpdateWithWhereUniqueWithoutAlamatInput[]
+    updateMany?: FamilyUpdateManyWithWhereWithoutAlamatInput | FamilyUpdateManyWithWhereWithoutAlamatInput[]
+    deleteMany?: FamilyScalarWhereInput | FamilyScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6909,6 +12155,108 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
+  export type NestedEnumReligionNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Religion | EnumReligionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumReligionNullableFilter<$PrismaModel> | $Enums.Religion | null
+  }
+
+  export type NestedEnumEducationNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Education | EnumEducationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumEducationNullableFilter<$PrismaModel> | $Enums.Education | null
+  }
+
+  export type NestedEnumOccupationNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Occupation | EnumOccupationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOccupationNullableFilter<$PrismaModel> | $Enums.Occupation | null
+  }
+
+  export type NestedEnumMaritalStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaritalStatus | EnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaritalStatusNullableFilter<$PrismaModel> | $Enums.MaritalStatus | null
+  }
+
+  export type NestedEnumFamilyRoleNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.FamilyRole | EnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFamilyRoleNullableFilter<$PrismaModel> | $Enums.FamilyRole | null
+  }
+
+  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
+  export type NestedEnumReligionNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Religion | EnumReligionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Religion[] | ListEnumReligionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumReligionNullableWithAggregatesFilter<$PrismaModel> | $Enums.Religion | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumReligionNullableFilter<$PrismaModel>
+    _max?: NestedEnumReligionNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumEducationNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Education | EnumEducationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Education[] | ListEnumEducationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumEducationNullableWithAggregatesFilter<$PrismaModel> | $Enums.Education | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumEducationNullableFilter<$PrismaModel>
+    _max?: NestedEnumEducationNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumOccupationNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Occupation | EnumOccupationFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Occupation[] | ListEnumOccupationFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOccupationNullableWithAggregatesFilter<$PrismaModel> | $Enums.Occupation | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumOccupationNullableFilter<$PrismaModel>
+    _max?: NestedEnumOccupationNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMaritalStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaritalStatus | EnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaritalStatus[] | ListEnumMaritalStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaritalStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaritalStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumMaritalStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumMaritalStatusNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFamilyRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FamilyRole | EnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FamilyRole[] | ListEnumFamilyRoleFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFamilyRoleNullableWithAggregatesFilter<$PrismaModel> | $Enums.FamilyRole | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumFamilyRoleNullableFilter<$PrismaModel>
+    _max?: NestedEnumFamilyRoleNullableFilter<$PrismaModel>
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -7166,6 +12514,429 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type AddressCreateWithoutPendudukInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keluarga?: FamilyCreateNestedManyWithoutAlamatInput
+  }
+
+  export type AddressUncheckedCreateWithoutPendudukInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keluarga?: FamilyUncheckedCreateNestedManyWithoutAlamatInput
+  }
+
+  export type AddressCreateOrConnectWithoutPendudukInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutPendudukInput, AddressUncheckedCreateWithoutPendudukInput>
+  }
+
+  export type FamilyCreateWithoutAnggotaInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    alamat?: AddressCreateNestedOneWithoutKeluargaInput
+  }
+
+  export type FamilyUncheckedCreateWithoutAnggotaInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    alamatId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FamilyCreateOrConnectWithoutAnggotaInput = {
+    where: FamilyWhereUniqueInput
+    create: XOR<FamilyCreateWithoutAnggotaInput, FamilyUncheckedCreateWithoutAnggotaInput>
+  }
+
+  export type AddressUpsertWithoutPendudukInput = {
+    update: XOR<AddressUpdateWithoutPendudukInput, AddressUncheckedUpdateWithoutPendudukInput>
+    create: XOR<AddressCreateWithoutPendudukInput, AddressUncheckedCreateWithoutPendudukInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutPendudukInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutPendudukInput, AddressUncheckedUpdateWithoutPendudukInput>
+  }
+
+  export type AddressUpdateWithoutPendudukInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keluarga?: FamilyUpdateManyWithoutAlamatNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutPendudukInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keluarga?: FamilyUncheckedUpdateManyWithoutAlamatNestedInput
+  }
+
+  export type FamilyUpsertWithoutAnggotaInput = {
+    update: XOR<FamilyUpdateWithoutAnggotaInput, FamilyUncheckedUpdateWithoutAnggotaInput>
+    create: XOR<FamilyCreateWithoutAnggotaInput, FamilyUncheckedCreateWithoutAnggotaInput>
+    where?: FamilyWhereInput
+  }
+
+  export type FamilyUpdateToOneWithWhereWithoutAnggotaInput = {
+    where?: FamilyWhereInput
+    data: XOR<FamilyUpdateWithoutAnggotaInput, FamilyUncheckedUpdateWithoutAnggotaInput>
+  }
+
+  export type FamilyUpdateWithoutAnggotaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    alamat?: AddressUpdateOneWithoutKeluargaNestedInput
+  }
+
+  export type FamilyUncheckedUpdateWithoutAnggotaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddressCreateWithoutKeluargaInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    penduduk?: CitizenCreateNestedManyWithoutAlamatInput
+  }
+
+  export type AddressUncheckedCreateWithoutKeluargaInput = {
+    id?: string
+    alamat: string
+    rt?: string | null
+    rw?: string | null
+    kelurahan?: string | null
+    kecamatan?: string | null
+    kabupaten?: string | null
+    provinsi?: string | null
+    kodePos?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    penduduk?: CitizenUncheckedCreateNestedManyWithoutAlamatInput
+  }
+
+  export type AddressCreateOrConnectWithoutKeluargaInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutKeluargaInput, AddressUncheckedCreateWithoutKeluargaInput>
+  }
+
+  export type CitizenCreateWithoutKeluargaInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    alamat?: AddressCreateNestedOneWithoutPendudukInput
+  }
+
+  export type CitizenUncheckedCreateWithoutKeluargaInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    alamatId?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CitizenCreateOrConnectWithoutKeluargaInput = {
+    where: CitizenWhereUniqueInput
+    create: XOR<CitizenCreateWithoutKeluargaInput, CitizenUncheckedCreateWithoutKeluargaInput>
+  }
+
+  export type CitizenCreateManyKeluargaInputEnvelope = {
+    data: CitizenCreateManyKeluargaInput | CitizenCreateManyKeluargaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddressUpsertWithoutKeluargaInput = {
+    update: XOR<AddressUpdateWithoutKeluargaInput, AddressUncheckedUpdateWithoutKeluargaInput>
+    create: XOR<AddressCreateWithoutKeluargaInput, AddressUncheckedCreateWithoutKeluargaInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutKeluargaInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutKeluargaInput, AddressUncheckedUpdateWithoutKeluargaInput>
+  }
+
+  export type AddressUpdateWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    penduduk?: CitizenUpdateManyWithoutAlamatNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: NullableStringFieldUpdateOperationsInput | string | null
+    rw?: NullableStringFieldUpdateOperationsInput | string | null
+    kelurahan?: NullableStringFieldUpdateOperationsInput | string | null
+    kecamatan?: NullableStringFieldUpdateOperationsInput | string | null
+    kabupaten?: NullableStringFieldUpdateOperationsInput | string | null
+    provinsi?: NullableStringFieldUpdateOperationsInput | string | null
+    kodePos?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    penduduk?: CitizenUncheckedUpdateManyWithoutAlamatNestedInput
+  }
+
+  export type CitizenUpsertWithWhereUniqueWithoutKeluargaInput = {
+    where: CitizenWhereUniqueInput
+    update: XOR<CitizenUpdateWithoutKeluargaInput, CitizenUncheckedUpdateWithoutKeluargaInput>
+    create: XOR<CitizenCreateWithoutKeluargaInput, CitizenUncheckedCreateWithoutKeluargaInput>
+  }
+
+  export type CitizenUpdateWithWhereUniqueWithoutKeluargaInput = {
+    where: CitizenWhereUniqueInput
+    data: XOR<CitizenUpdateWithoutKeluargaInput, CitizenUncheckedUpdateWithoutKeluargaInput>
+  }
+
+  export type CitizenUpdateManyWithWhereWithoutKeluargaInput = {
+    where: CitizenScalarWhereInput
+    data: XOR<CitizenUpdateManyMutationInput, CitizenUncheckedUpdateManyWithoutKeluargaInput>
+  }
+
+  export type CitizenScalarWhereInput = {
+    AND?: CitizenScalarWhereInput | CitizenScalarWhereInput[]
+    OR?: CitizenScalarWhereInput[]
+    NOT?: CitizenScalarWhereInput | CitizenScalarWhereInput[]
+    id?: StringFilter<"Citizen"> | string
+    nik?: StringFilter<"Citizen"> | string
+    nama?: StringFilter<"Citizen"> | string
+    jenisKelamin?: EnumGenderFilter<"Citizen"> | $Enums.Gender
+    tempatLahir?: StringNullableFilter<"Citizen"> | string | null
+    tanggalLahir?: DateTimeNullableFilter<"Citizen"> | Date | string | null
+    agama?: EnumReligionNullableFilter<"Citizen"> | $Enums.Religion | null
+    pendidikan?: EnumEducationNullableFilter<"Citizen"> | $Enums.Education | null
+    pekerjaan?: EnumOccupationNullableFilter<"Citizen"> | $Enums.Occupation | null
+    statusPerkawinan?: EnumMaritalStatusNullableFilter<"Citizen"> | $Enums.MaritalStatus | null
+    kewarganegaraan?: StringNullableFilter<"Citizen"> | string | null
+    noHp?: StringNullableFilter<"Citizen"> | string | null
+    email?: StringNullableFilter<"Citizen"> | string | null
+    alamatId?: StringNullableFilter<"Citizen"> | string | null
+    keluargaId?: StringNullableFilter<"Citizen"> | string | null
+    statusDalamKeluarga?: EnumFamilyRoleNullableFilter<"Citizen"> | $Enums.FamilyRole | null
+    createdAt?: DateTimeFilter<"Citizen"> | Date | string
+    updatedAt?: DateTimeFilter<"Citizen"> | Date | string
+  }
+
+  export type CitizenCreateWithoutAlamatInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keluarga?: FamilyCreateNestedOneWithoutAnggotaInput
+  }
+
+  export type CitizenUncheckedCreateWithoutAlamatInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    keluargaId?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CitizenCreateOrConnectWithoutAlamatInput = {
+    where: CitizenWhereUniqueInput
+    create: XOR<CitizenCreateWithoutAlamatInput, CitizenUncheckedCreateWithoutAlamatInput>
+  }
+
+  export type CitizenCreateManyAlamatInputEnvelope = {
+    data: CitizenCreateManyAlamatInput | CitizenCreateManyAlamatInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FamilyCreateWithoutAlamatInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    anggota?: CitizenCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type FamilyUncheckedCreateWithoutAlamatInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    anggota?: CitizenUncheckedCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type FamilyCreateOrConnectWithoutAlamatInput = {
+    where: FamilyWhereUniqueInput
+    create: XOR<FamilyCreateWithoutAlamatInput, FamilyUncheckedCreateWithoutAlamatInput>
+  }
+
+  export type FamilyCreateManyAlamatInputEnvelope = {
+    data: FamilyCreateManyAlamatInput | FamilyCreateManyAlamatInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CitizenUpsertWithWhereUniqueWithoutAlamatInput = {
+    where: CitizenWhereUniqueInput
+    update: XOR<CitizenUpdateWithoutAlamatInput, CitizenUncheckedUpdateWithoutAlamatInput>
+    create: XOR<CitizenCreateWithoutAlamatInput, CitizenUncheckedCreateWithoutAlamatInput>
+  }
+
+  export type CitizenUpdateWithWhereUniqueWithoutAlamatInput = {
+    where: CitizenWhereUniqueInput
+    data: XOR<CitizenUpdateWithoutAlamatInput, CitizenUncheckedUpdateWithoutAlamatInput>
+  }
+
+  export type CitizenUpdateManyWithWhereWithoutAlamatInput = {
+    where: CitizenScalarWhereInput
+    data: XOR<CitizenUpdateManyMutationInput, CitizenUncheckedUpdateManyWithoutAlamatInput>
+  }
+
+  export type FamilyUpsertWithWhereUniqueWithoutAlamatInput = {
+    where: FamilyWhereUniqueInput
+    update: XOR<FamilyUpdateWithoutAlamatInput, FamilyUncheckedUpdateWithoutAlamatInput>
+    create: XOR<FamilyCreateWithoutAlamatInput, FamilyUncheckedCreateWithoutAlamatInput>
+  }
+
+  export type FamilyUpdateWithWhereUniqueWithoutAlamatInput = {
+    where: FamilyWhereUniqueInput
+    data: XOR<FamilyUpdateWithoutAlamatInput, FamilyUncheckedUpdateWithoutAlamatInput>
+  }
+
+  export type FamilyUpdateManyWithWhereWithoutAlamatInput = {
+    where: FamilyScalarWhereInput
+    data: XOR<FamilyUpdateManyMutationInput, FamilyUncheckedUpdateManyWithoutAlamatInput>
+  }
+
+  export type FamilyScalarWhereInput = {
+    AND?: FamilyScalarWhereInput | FamilyScalarWhereInput[]
+    OR?: FamilyScalarWhereInput[]
+    NOT?: FamilyScalarWhereInput | FamilyScalarWhereInput[]
+    id?: StringFilter<"Family"> | string
+    noKK?: StringFilter<"Family"> | string
+    kepalaNIK?: StringNullableFilter<"Family"> | string | null
+    namaKepala?: StringNullableFilter<"Family"> | string | null
+    alamatId?: StringNullableFilter<"Family"> | string | null
+    createdAt?: DateTimeFilter<"Family"> | Date | string
+    updatedAt?: DateTimeFilter<"Family"> | Date | string
+  }
+
   export type SessionCreateManyUserInput = {
     id: string
     expiresAt: Date | string
@@ -7262,6 +13033,204 @@ export namespace Prisma {
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CitizenCreateManyKeluargaInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    alamatId?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CitizenUpdateWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    alamat?: AddressUpdateOneWithoutPendudukNestedInput
+  }
+
+  export type CitizenUncheckedUpdateWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CitizenUncheckedUpdateManyWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    alamatId?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CitizenCreateManyAlamatInput = {
+    id?: string
+    nik: string
+    nama: string
+    jenisKelamin: $Enums.Gender
+    tempatLahir?: string | null
+    tanggalLahir?: Date | string | null
+    agama?: $Enums.Religion | null
+    pendidikan?: $Enums.Education | null
+    pekerjaan?: $Enums.Occupation | null
+    statusPerkawinan?: $Enums.MaritalStatus | null
+    kewarganegaraan?: string | null
+    noHp?: string | null
+    email?: string | null
+    keluargaId?: string | null
+    statusDalamKeluarga?: $Enums.FamilyRole | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FamilyCreateManyAlamatInput = {
+    id?: string
+    noKK: string
+    kepalaNIK?: string | null
+    namaKepala?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CitizenUpdateWithoutAlamatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keluarga?: FamilyUpdateOneWithoutAnggotaNestedInput
+  }
+
+  export type CitizenUncheckedUpdateWithoutAlamatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    keluargaId?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CitizenUncheckedUpdateManyWithoutAlamatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jenisKelamin?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agama?: NullableEnumReligionFieldUpdateOperationsInput | $Enums.Religion | null
+    pendidikan?: NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
+    pekerjaan?: NullableEnumOccupationFieldUpdateOperationsInput | $Enums.Occupation | null
+    statusPerkawinan?: NullableEnumMaritalStatusFieldUpdateOperationsInput | $Enums.MaritalStatus | null
+    kewarganegaraan?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    keluargaId?: NullableStringFieldUpdateOperationsInput | string | null
+    statusDalamKeluarga?: NullableEnumFamilyRoleFieldUpdateOperationsInput | $Enums.FamilyRole | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyUpdateWithoutAlamatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggota?: CitizenUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type FamilyUncheckedUpdateWithoutAlamatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggota?: CitizenUncheckedUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type FamilyUncheckedUpdateManyWithoutAlamatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    noKK?: StringFieldUpdateOperationsInput | string
+    kepalaNIK?: NullableStringFieldUpdateOperationsInput | string | null
+    namaKepala?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -20,7 +20,7 @@ export function LayoutShell({
 
         <div className="ml-[280px] flex-1">
           <header className="p-[30px] pb-0">{navbar}</header>
-          <main className="flex p-[30px]">{children}</main>
+          <main className="flex p-[30px] flex-col">{children}</main>
         </div>
       </div>
     </div>

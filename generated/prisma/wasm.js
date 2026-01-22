@@ -139,6 +139,51 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CitizenScalarFieldEnum = {
+  id: 'id',
+  nik: 'nik',
+  nama: 'nama',
+  jenisKelamin: 'jenisKelamin',
+  tempatLahir: 'tempatLahir',
+  tanggalLahir: 'tanggalLahir',
+  agama: 'agama',
+  pendidikan: 'pendidikan',
+  pekerjaan: 'pekerjaan',
+  statusPerkawinan: 'statusPerkawinan',
+  kewarganegaraan: 'kewarganegaraan',
+  noHp: 'noHp',
+  email: 'email',
+  alamatId: 'alamatId',
+  keluargaId: 'keluargaId',
+  statusDalamKeluarga: 'statusDalamKeluarga',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FamilyScalarFieldEnum = {
+  id: 'id',
+  noKK: 'noKK',
+  kepalaNIK: 'kepalaNIK',
+  namaKepala: 'namaKepala',
+  alamatId: 'alamatId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  id: 'id',
+  alamat: 'alamat',
+  rt: 'rt',
+  rw: 'rw',
+  kelurahan: 'kelurahan',
+  kecamatan: 'kecamatan',
+  kabupaten: 'kabupaten',
+  provinsi: 'provinsi',
+  kodePos: 'kodePos',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -153,13 +198,81 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Gender = exports.$Enums.Gender = {
+  L: 'L',
+  P: 'P'
+};
 
+exports.Religion = exports.$Enums.Religion = {
+  ISLAM: 'ISLAM',
+  KRISTEN: 'KRISTEN',
+  KATOLIK: 'KATOLIK',
+  HINDU: 'HINDU',
+  BUDDHA: 'BUDDHA',
+  KONGHUCU: 'KONGHUCU',
+  KEPERCAYAAN: 'KEPERCAYAAN',
+  LAINNYA: 'LAINNYA'
+};
+
+exports.MaritalStatus = exports.$Enums.MaritalStatus = {
+  BELUM_KAWIN: 'BELUM_KAWIN',
+  KAWIN: 'KAWIN',
+  CERAI_HIDUP: 'CERAI_HIDUP',
+  CERAI_MATI: 'CERAI_MATI'
+};
+
+exports.FamilyRole = exports.$Enums.FamilyRole = {
+  KEPALA_KELUARGA: 'KEPALA_KELUARGA',
+  SUAMI: 'SUAMI',
+  ISTRI: 'ISTRI',
+  ANAK: 'ANAK',
+  MENANTU: 'MENANTU',
+  CUCU: 'CUCU',
+  ORANG_TUA: 'ORANG_TUA',
+  MERTUA: 'MERTUA',
+  FAMILI_LAIN: 'FAMILI_LAIN',
+  PEMBANTU: 'PEMBANTU',
+  LAINNYA: 'LAINNYA'
+};
+
+exports.Education = exports.$Enums.Education = {
+  TIDAK_SEKOLAH: 'TIDAK_SEKOLAH',
+  SD: 'SD',
+  SMP: 'SMP',
+  SMA: 'SMA',
+  D1: 'D1',
+  D2: 'D2',
+  D3: 'D3',
+  S1: 'S1',
+  S2: 'S2',
+  S3: 'S3',
+  LAINNYA: 'LAINNYA'
+};
+
+exports.Occupation = exports.$Enums.Occupation = {
+  BELUM_TIDAK_BEKERJA: 'BELUM_TIDAK_BEKERJA',
+  PELAJAR_MAHASISWA: 'PELAJAR_MAHASISWA',
+  IRT: 'IRT',
+  PNS: 'PNS',
+  TNI: 'TNI',
+  POLRI: 'POLRI',
+  KARYAWAN_SWASTA: 'KARYAWAN_SWASTA',
+  WIRASWASTA: 'WIRASWASTA',
+  PETANI: 'PETANI',
+  NELAYAN: 'NELAYAN',
+  BURUH: 'BURUH',
+  PENSIUNAN: 'PENSIUNAN',
+  LAINNYA: 'LAINNYA'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Citizen: 'Citizen',
+  Family: 'Family',
+  Address: 'Address'
 };
 /**
  * Create the Client
@@ -172,7 +285,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\gawe\\freelance\\t3-kelurahan\\generated\\prisma",
+      "value": "D:\\Personal\\t3-kelurahan\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -186,7 +299,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\gawe\\freelance\\t3-kelurahan\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Personal\\t3-kelurahan\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -200,7 +313,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -209,13 +321,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// Prisma schema for Better Auth\n// learn more: https://better-auth.com/docs/concepts/database\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\n// NOTE: When using mysql or sqlserver, uncomment the //@db.Text annotations in model Account below\n// Further reading:\n// https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String    @id\n  name          String //@db.Text\n  email         String\n  emailVerified Boolean   @default(false)\n  image         String? //@db.Text\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @default(now()) @updatedAt\n  sessions      Session[]\n  accounts      Account[]\n\n  @@unique([email])\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  ipAddress String? //@db.Text\n  userAgent String? //@db.Text\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([token])\n  @@index([userId])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String //@db.Text\n  providerId            String //@db.Text\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String? //@db.Text\n  refreshToken          String? //@db.Text\n  idToken               String? //@db.Text\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String? //@db.Text\n  password              String? //@db.Text\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n\n  @@index([userId])\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String   @id\n  identifier String //@db.Text\n  value      String //@db.Text\n  expiresAt  DateTime\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @default(now()) @updatedAt\n\n  @@index([identifier])\n  @@map(\"verification\")\n}\n",
-  "inlineSchemaHash": "60280b0ac91bfa72f010e46e379cff85104cf15c8a2eb31403fd22ef04bfa459",
+  "inlineSchema": "// Prisma schema for Better Auth\n// learn more: https://better-auth.com/docs/concepts/database\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\n// NOTE: When using mysql or sqlserver, uncomment the //@db.Text annotations in model Account below\n// Further reading:\n// https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String    @id\n  name          String //@db.Text\n  email         String\n  emailVerified Boolean   @default(false)\n  image         String? //@db.Text\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @default(now()) @updatedAt\n  sessions      Session[]\n  accounts      Account[]\n\n  @@unique([email])\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  ipAddress String? //@db.Text\n  userAgent String? //@db.Text\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([token])\n  @@index([userId])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String //@db.Text\n  providerId            String //@db.Text\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String? //@db.Text\n  refreshToken          String? //@db.Text\n  idToken               String? //@db.Text\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String? //@db.Text\n  password              String? //@db.Text\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n\n  @@index([userId])\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String   @id\n  identifier String //@db.Text\n  value      String //@db.Text\n  expiresAt  DateTime\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @default(now()) @updatedAt\n\n  @@index([identifier])\n  @@map(\"verification\")\n}\n\n// MODEL PENDUDUK\n\nenum Gender {\n  L\n  P\n}\n\nenum Religion {\n  ISLAM\n  KRISTEN\n  KATOLIK\n  HINDU\n  BUDDHA\n  KONGHUCU\n  KEPERCAYAAN\n  LAINNYA\n}\n\nenum MaritalStatus {\n  BELUM_KAWIN\n  KAWIN\n  CERAI_HIDUP\n  CERAI_MATI\n}\n\nenum FamilyRole {\n  KEPALA_KELUARGA\n  SUAMI\n  ISTRI\n  ANAK\n  MENANTU\n  CUCU\n  ORANG_TUA\n  MERTUA\n  FAMILI_LAIN\n  PEMBANTU\n  LAINNYA\n}\n\nenum Education {\n  TIDAK_SEKOLAH\n  SD\n  SMP\n  SMA\n  D1\n  D2\n  D3\n  S1\n  S2\n  S3\n  LAINNYA\n}\n\nenum Occupation {\n  BELUM_TIDAK_BEKERJA\n  PELAJAR_MAHASISWA\n  IRT\n  PNS\n  TNI\n  POLRI\n  KARYAWAN_SWASTA\n  WIRASWASTA\n  PETANI\n  NELAYAN\n  BURUH\n  PENSIUNAN\n  LAINNYA\n}\n\nmodel Citizen {\n  id               String         @id @default(cuid())\n  nik              String         @unique\n  nama             String\n  jenisKelamin     Gender\n  tempatLahir      String?\n  tanggalLahir     DateTime?\n  agama            Religion?\n  pendidikan       Education?\n  pekerjaan        Occupation?\n  statusPerkawinan MaritalStatus?\n  kewarganegaraan  String?\n  noHp             String?\n  email            String?\n\n  alamatId String?\n  alamat   Address? @relation(fields: [alamatId], references: [id], onDelete: SetNull)\n\n  keluargaId          String?\n  keluarga            Family?     @relation(fields: [keluargaId], references: [id], onDelete: SetNull)\n  statusDalamKeluarga FamilyRole?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([keluargaId])\n  @@index([alamatId])\n  @@map(\"penduduk\")\n}\n\nmodel Family {\n  id         String    @id @default(cuid())\n  noKK       String    @unique\n  kepalaNIK  String?\n  namaKepala String?\n  alamatId   String?\n  alamat     Address?  @relation(fields: [alamatId], references: [id], onDelete: SetNull)\n  anggota    Citizen[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([alamatId])\n  @@map(\"keluarga\")\n}\n\nmodel Address {\n  id        String  @id @default(cuid())\n  alamat    String\n  rt        String?\n  rw        String?\n  kelurahan String?\n  kecamatan String?\n  kabupaten String?\n  provinsi  String?\n  kodePos   String?\n\n  penduduk Citizen[]\n  keluarga Family[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([kelurahan, kecamatan])\n  @@map(\"alamat\")\n}\n",
+  "inlineSchemaHash": "5d13e58c09fa1883b45ee2ce49b4618884bea9b71c87288b8b72093eb5059797",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"Session\",\"relationName\":\"SessionToUser\"},{\"name\":\"accounts\",\"kind\":\"object\",\"type\":\"Account\",\"relationName\":\"AccountToUser\"}],\"dbName\":\"user\"},\"Session\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SessionToUser\"}],\"dbName\":\"session\"},\"Account\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AccountToUser\"},{\"name\":\"accessToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"account\"},\"Verification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"verification\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"Session\",\"relationName\":\"SessionToUser\"},{\"name\":\"accounts\",\"kind\":\"object\",\"type\":\"Account\",\"relationName\":\"AccountToUser\"}],\"dbName\":\"user\"},\"Session\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SessionToUser\"}],\"dbName\":\"session\"},\"Account\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AccountToUser\"},{\"name\":\"accessToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"account\"},\"Verification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"verification\"},\"Citizen\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nik\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nama\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"jenisKelamin\",\"kind\":\"enum\",\"type\":\"Gender\"},{\"name\":\"tempatLahir\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tanggalLahir\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"agama\",\"kind\":\"enum\",\"type\":\"Religion\"},{\"name\":\"pendidikan\",\"kind\":\"enum\",\"type\":\"Education\"},{\"name\":\"pekerjaan\",\"kind\":\"enum\",\"type\":\"Occupation\"},{\"name\":\"statusPerkawinan\",\"kind\":\"enum\",\"type\":\"MaritalStatus\"},{\"name\":\"kewarganegaraan\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"noHp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"alamatId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"alamat\",\"kind\":\"object\",\"type\":\"Address\",\"relationName\":\"AddressToCitizen\"},{\"name\":\"keluargaId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"keluarga\",\"kind\":\"object\",\"type\":\"Family\",\"relationName\":\"CitizenToFamily\"},{\"name\":\"statusDalamKeluarga\",\"kind\":\"enum\",\"type\":\"FamilyRole\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"penduduk\"},\"Family\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"noKK\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kepalaNIK\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"namaKepala\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"alamatId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"alamat\",\"kind\":\"object\",\"type\":\"Address\",\"relationName\":\"AddressToFamily\"},{\"name\":\"anggota\",\"kind\":\"object\",\"type\":\"Citizen\",\"relationName\":\"CitizenToFamily\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"keluarga\"},\"Address\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"alamat\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rw\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kelurahan\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kecamatan\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kabupaten\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provinsi\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kodePos\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"penduduk\",\"kind\":\"object\",\"type\":\"Citizen\",\"relationName\":\"AddressToCitizen\"},{\"name\":\"keluarga\",\"kind\":\"object\",\"type\":\"Family\",\"relationName\":\"AddressToFamily\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"alamat\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

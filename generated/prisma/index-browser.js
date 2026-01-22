@@ -167,6 +167,51 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CitizenScalarFieldEnum = {
+  id: 'id',
+  nik: 'nik',
+  nama: 'nama',
+  jenisKelamin: 'jenisKelamin',
+  tempatLahir: 'tempatLahir',
+  tanggalLahir: 'tanggalLahir',
+  agama: 'agama',
+  pendidikan: 'pendidikan',
+  pekerjaan: 'pekerjaan',
+  statusPerkawinan: 'statusPerkawinan',
+  kewarganegaraan: 'kewarganegaraan',
+  noHp: 'noHp',
+  email: 'email',
+  alamatId: 'alamatId',
+  keluargaId: 'keluargaId',
+  statusDalamKeluarga: 'statusDalamKeluarga',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FamilyScalarFieldEnum = {
+  id: 'id',
+  noKK: 'noKK',
+  kepalaNIK: 'kepalaNIK',
+  namaKepala: 'namaKepala',
+  alamatId: 'alamatId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  id: 'id',
+  alamat: 'alamat',
+  rt: 'rt',
+  rw: 'rw',
+  kelurahan: 'kelurahan',
+  kecamatan: 'kecamatan',
+  kabupaten: 'kabupaten',
+  provinsi: 'provinsi',
+  kodePos: 'kodePos',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -181,13 +226,81 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Gender = exports.$Enums.Gender = {
+  L: 'L',
+  P: 'P'
+};
 
+exports.Religion = exports.$Enums.Religion = {
+  ISLAM: 'ISLAM',
+  KRISTEN: 'KRISTEN',
+  KATOLIK: 'KATOLIK',
+  HINDU: 'HINDU',
+  BUDDHA: 'BUDDHA',
+  KONGHUCU: 'KONGHUCU',
+  KEPERCAYAAN: 'KEPERCAYAAN',
+  LAINNYA: 'LAINNYA'
+};
+
+exports.Education = exports.$Enums.Education = {
+  TIDAK_SEKOLAH: 'TIDAK_SEKOLAH',
+  SD: 'SD',
+  SMP: 'SMP',
+  SMA: 'SMA',
+  D1: 'D1',
+  D2: 'D2',
+  D3: 'D3',
+  S1: 'S1',
+  S2: 'S2',
+  S3: 'S3',
+  LAINNYA: 'LAINNYA'
+};
+
+exports.Occupation = exports.$Enums.Occupation = {
+  BELUM_TIDAK_BEKERJA: 'BELUM_TIDAK_BEKERJA',
+  PELAJAR_MAHASISWA: 'PELAJAR_MAHASISWA',
+  IRT: 'IRT',
+  PNS: 'PNS',
+  TNI: 'TNI',
+  POLRI: 'POLRI',
+  KARYAWAN_SWASTA: 'KARYAWAN_SWASTA',
+  WIRASWASTA: 'WIRASWASTA',
+  PETANI: 'PETANI',
+  NELAYAN: 'NELAYAN',
+  BURUH: 'BURUH',
+  PENSIUNAN: 'PENSIUNAN',
+  LAINNYA: 'LAINNYA'
+};
+
+exports.MaritalStatus = exports.$Enums.MaritalStatus = {
+  BELUM_KAWIN: 'BELUM_KAWIN',
+  KAWIN: 'KAWIN',
+  CERAI_HIDUP: 'CERAI_HIDUP',
+  CERAI_MATI: 'CERAI_MATI'
+};
+
+exports.FamilyRole = exports.$Enums.FamilyRole = {
+  KEPALA_KELUARGA: 'KEPALA_KELUARGA',
+  SUAMI: 'SUAMI',
+  ISTRI: 'ISTRI',
+  ANAK: 'ANAK',
+  MENANTU: 'MENANTU',
+  CUCU: 'CUCU',
+  ORANG_TUA: 'ORANG_TUA',
+  MERTUA: 'MERTUA',
+  FAMILI_LAIN: 'FAMILI_LAIN',
+  PEMBANTU: 'PEMBANTU',
+  LAINNYA: 'LAINNYA'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Citizen: 'Citizen',
+  Family: 'Family',
+  Address: 'Address'
 };
 
 /**
