@@ -12,21 +12,21 @@ import {
 
 const NONE = "__none__";
 
-type FamilyRoleSelectFieldProps = {
+type MaterialSelectFieldProps = {
   value: string;
   onChange: (value: string) => void;
   disabled?: boolean;
 };
 
-export function FamilyRoleSelectField({
+export function MaterialSelectField({
   value,
   onChange,
   disabled = false,
-}: FamilyRoleSelectFieldProps) {
+}: MaterialSelectFieldProps) {
   return (
     <Field>
       <FieldLabel className="font-semibold">
-        Status Dalam Keluarga (opsional)
+        Status Perkawinan
       </FieldLabel>
 
       <Select
@@ -40,17 +40,10 @@ export function FamilyRoleSelectField({
 
         <SelectContent>
           <SelectItem value={NONE}>(Kosongkan)</SelectItem>
-          <SelectItem value="KEPALA_KELUARGA">Kepala Keluarga</SelectItem>
-          <SelectItem value="SUAMI">Suami</SelectItem>
-          <SelectItem value="ISTRI">Istri</SelectItem>
-          <SelectItem value="ANAK">Anak</SelectItem>
-          <SelectItem value="MENANTU">Menantu</SelectItem>
-          <SelectItem value="CUCU">Cucu</SelectItem>
-          <SelectItem value="ORANG_TUA">Orang Tua</SelectItem>
-          <SelectItem value="MERTUA">Mertua</SelectItem>
-          <SelectItem value="FAMILI_LAIN">Famili Lain</SelectItem>
-          <SelectItem value="PEMBANTU">Pembantu</SelectItem>
-          <SelectItem value="LAINNYA">Lainnya</SelectItem>
+          <SelectItem value="BELUM_KAWIN">Belum Kawin</SelectItem>
+          <SelectItem value="KAWIN">Kawin</SelectItem>
+          <SelectItem value="CERAI_HIDUP">Cerai Hidup</SelectItem>
+          <SelectItem value="CERAI_MATI">Cerai Mati</SelectItem>
         </SelectContent>
       </Select>
     </Field>

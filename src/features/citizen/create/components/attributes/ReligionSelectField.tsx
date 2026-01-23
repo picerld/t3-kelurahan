@@ -12,21 +12,21 @@ import {
 
 const NONE = "__none__";
 
-type FamilyRoleSelectFieldProps = {
+type ReligionSelectFieldProps = {
   value: string;
   onChange: (value: string) => void;
   disabled?: boolean;
 };
 
-export function FamilyRoleSelectField({
+export function ReligionSelectField({
   value,
   onChange,
   disabled = false,
-}: FamilyRoleSelectFieldProps) {
+}: ReligionSelectFieldProps) {
   return (
     <Field>
       <FieldLabel className="font-semibold">
-        Status Dalam Keluarga (opsional)
+        Agama
       </FieldLabel>
 
       <Select
@@ -40,16 +40,12 @@ export function FamilyRoleSelectField({
 
         <SelectContent>
           <SelectItem value={NONE}>(Kosongkan)</SelectItem>
-          <SelectItem value="KEPALA_KELUARGA">Kepala Keluarga</SelectItem>
-          <SelectItem value="SUAMI">Suami</SelectItem>
-          <SelectItem value="ISTRI">Istri</SelectItem>
-          <SelectItem value="ANAK">Anak</SelectItem>
-          <SelectItem value="MENANTU">Menantu</SelectItem>
-          <SelectItem value="CUCU">Cucu</SelectItem>
-          <SelectItem value="ORANG_TUA">Orang Tua</SelectItem>
-          <SelectItem value="MERTUA">Mertua</SelectItem>
-          <SelectItem value="FAMILI_LAIN">Famili Lain</SelectItem>
-          <SelectItem value="PEMBANTU">Pembantu</SelectItem>
+          <SelectItem value="ISLAM">Islam</SelectItem>
+          <SelectItem value="KRISTEN">Kristen</SelectItem>
+          <SelectItem value="KATOLIK">Katolik</SelectItem>
+          <SelectItem value="HINDU">Hindu</SelectItem>
+          <SelectItem value="BUDDHA">Buddha</SelectItem>
+          <SelectItem value="KONGHUCU">Konghucu</SelectItem>
           <SelectItem value="LAINNYA">Lainnya</SelectItem>
         </SelectContent>
       </Select>

@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useForm } from "@tanstack/react-form";
 import type { z } from "zod";
-import { Hash, User, Phone, Mail, CalendarDays } from "lucide-react";
-
+import { Hash, User, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,7 +15,7 @@ import {
     FieldError,
 } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
-import { citizenFormSchema } from "../forms/citizen";
+import { citizenFormSchema, type CitizenFormSchema } from "../forms/citizen";
 import { api } from "@/utils/api";
 import {
     Select,
@@ -29,8 +28,9 @@ import { AddressSelectField } from "./attributes/AddressSelectField";
 import { FamilySelectField } from "./attributes/FamilySelectField";
 import { FamilyRoleSelectField } from "./attributes/FamilyRoleSelect";
 import { DatePickerField } from "@/components/ui/date-picker-field";
-
-type CitizenCreateValues = z.infer<typeof citizenFormSchema>;
+import { ReligionSelectField } from "./attributes/ReligionSelectField";
+import { EducationSelectField } from "./attributes/EducationSelectField";
+import { MaterialSelectField } from "./attributes/MaterialSelectField";
 
 export function CitizenCreateForm() {
     const router = useRouter();
@@ -38,6 +38,7 @@ export function CitizenCreateForm() {
     const createCitizen = api.citizen.create.useMutation({
         onSuccess: () => {
             toast.success("Berhasil", { description: "Data penduduk ditambahkan." });
+
             router.push("/citizens");
             router.refresh();
         },
@@ -63,7 +64,12 @@ export function CitizenCreateForm() {
             alamatId: "",
             keluargaId: "",
             statusDalamKeluarga: "" as any,
-        } satisfies CitizenCreateValues,
+
+            agama: "" as any,
+            pekerjaan: "",
+            pendidikan: "" as any,
+            statusPerkawinan: "" as any,
+        } satisfies CitizenFormSchema,
         validators: { onSubmit: citizenFormSchema },
         onSubmit: async ({ value }) => {
             await createCitizen.mutateAsync({
@@ -74,6 +80,10 @@ export function CitizenCreateForm() {
                 alamatId: value.alamatId?.trim() ? value.alamatId.trim() : undefined,
                 keluargaId: value.keluargaId?.trim() ? value.keluargaId.trim() : undefined,
                 statusDalamKeluarga: value.statusDalamKeluarga ?? value.statusDalamKeluarga,
+                agama: value.agama ?? value.agama,
+                pekerjaan: value.pekerjaan?.trim() ? value.pekerjaan.trim() : undefined,
+                pendidikan: value.pendidikan ?? value.pendidikan,
+                statusPerkawinan: value.statusPerkawinan ?? value.statusPerkawinan,
             });
         },
     });
@@ -210,6 +220,63 @@ export function CitizenCreateForm() {
                                             placeholder="email@example.com"
                                             className="pl-12 h-12"
                                             value={field.state.value ?? ""}
+                                            onBlur={field.handleBlur}
+                                            onChange={(e) => field.handleChange(e.target.value)}
+                                            disabled={isBusy}
+                                        />
+                                    </div>
+                                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                </Field>
+                            );
+                        }}
+                    </form.Field>
+                </div>
+
+                <div className="grid grid-cols-2 gap-5">
+                    <form.Field name="agama">
+                        {(field) => (
+                            <ReligionSelectField
+                                value={field.state.value ?? ""}
+                                onChange={(v) => field.handleChange(v)}
+                                disabled={isBusy}
+                            />
+                        )}
+                    </form.Field>
+
+                    <form.Field name="pendidikan">
+                        {(field) => (
+                            <EducationSelectField
+                                value={field.state.value ?? ""}
+                                onChange={(v) => field.handleChange(v)}
+                                disabled={isBusy}
+                            />
+                        )}
+                    </form.Field>
+                </div>
+
+                <div className="grid grid-cols-2 gap-5">
+                    <form.Field name="statusPerkawinan">
+                        {(field) => (
+                            <MaterialSelectField
+                                value={field.state.value ?? ""}
+                                onChange={(v) => field.handleChange(v)}
+                                disabled={isBusy}
+                            />
+                        )}
+                    </form.Field>
+
+                    <form.Field name="pekerjaan">
+                        {(field) => {
+                            const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
+                            return (
+                                <Field>
+                                    <FieldLabel className="font-semibold">Pekerjaan</FieldLabel>
+                                    <div className="relative">
+                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#89869A]" />
+                                        <Input
+                                            placeholder="Pekerjaan saat ini"
+                                            className="pl-12 h-12"
+                                            value={field.state.value}
                                             onBlur={field.handleBlur}
                                             onChange={(e) => field.handleChange(e.target.value)}
                                             disabled={isBusy}

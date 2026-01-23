@@ -12,21 +12,21 @@ import {
 
 const NONE = "__none__";
 
-type FamilyRoleSelectFieldProps = {
+type EducationSelectFieldProps = {
   value: string;
   onChange: (value: string) => void;
   disabled?: boolean;
 };
 
-export function FamilyRoleSelectField({
+export function EducationSelectField({
   value,
   onChange,
   disabled = false,
-}: FamilyRoleSelectFieldProps) {
+}: EducationSelectFieldProps) {
   return (
     <Field>
       <FieldLabel className="font-semibold">
-        Status Dalam Keluarga (opsional)
+        Pendidikan
       </FieldLabel>
 
       <Select
@@ -40,17 +40,17 @@ export function FamilyRoleSelectField({
 
         <SelectContent>
           <SelectItem value={NONE}>(Kosongkan)</SelectItem>
-          <SelectItem value="KEPALA_KELUARGA">Kepala Keluarga</SelectItem>
-          <SelectItem value="SUAMI">Suami</SelectItem>
-          <SelectItem value="ISTRI">Istri</SelectItem>
-          <SelectItem value="ANAK">Anak</SelectItem>
-          <SelectItem value="MENANTU">Menantu</SelectItem>
-          <SelectItem value="CUCU">Cucu</SelectItem>
-          <SelectItem value="ORANG_TUA">Orang Tua</SelectItem>
-          <SelectItem value="MERTUA">Mertua</SelectItem>
-          <SelectItem value="FAMILI_LAIN">Famili Lain</SelectItem>
-          <SelectItem value="PEMBANTU">Pembantu</SelectItem>
-          <SelectItem value="LAINNYA">Lainnya</SelectItem>
+          <SelectItem value="TIDAK_SEKOLAH">Tidak Sekolah</SelectItem>
+          <SelectItem value="SD">SD</SelectItem>
+          <SelectItem value="SMP">SMP</SelectItem>
+          <SelectItem value="SMA">SMA</SelectItem>
+          <SelectItem value="D1">D1</SelectItem>
+          <SelectItem value="D2">D2</SelectItem>
+          <SelectItem value="D3">D3</SelectItem>
+          <SelectItem value="S1">S1</SelectItem>
+          <SelectItem value="S2">S2</SelectItem>
+          <SelectItem value="S3">S3</SelectItem>
+          <SelectItem value="LAINNYA">LAINNYA</SelectItem>
         </SelectContent>
       </Select>
     </Field>
