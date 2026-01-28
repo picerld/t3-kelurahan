@@ -289,7 +289,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
             <form.Field name="agama">
               {(field) => (
                 <ReligionSelectField
-                  value={field.state.value ?? ""}
+                  value={field.state.value}
                   onChange={(v) => field.handleChange(v)}
                   disabled={isBusy}
                 />
@@ -299,7 +299,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
             <form.Field name="pendidikan">
               {(field) => (
                 <EducationSelectField
-                  value={field.state.value ?? ""}
+                  value={field.state.value}
                   onChange={(v) => field.handleChange(v)}
                   disabled={isBusy}
                 />
@@ -311,7 +311,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
             <form.Field name="statusPerkawinan">
               {(field) => (
                 <MaterialSelectField
-                  value={field.state.value ?? ""}
+                  value={field.state.value}
                   onChange={(v) => field.handleChange(v)}
                   disabled={isBusy}
                 />
@@ -321,7 +321,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
             <form.Field name="pekerjaan">
               {(field) => (
                 <JobSelectField
-                  value={field.state.value ?? ""}
+                  value={field.state.value}
                   onChange={(v) => field.handleChange(v)}
                   disabled={isBusy}
                 />
@@ -334,7 +334,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
           <form.Field name="alamatId">
             {(field) => (
               <AddressSelectField
-                value={field.state.value ?? ""}
+                value={field.state.value}
                 onChange={(v) => field.handleChange(v)}
                 disabled={isBusy}
               />
@@ -344,7 +344,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
           <form.Field name="keluargaId">
             {(field) => (
               <FamilySelectField
-                value={field.state.value ?? ""}
+                value={field.state.value}
                 onChange={(v) => field.handleChange(v)}
                 disabled={isBusy}
                 alamatIdToLink={form.getFieldValue("alamatId")}
@@ -355,7 +355,7 @@ export function CitizenForm({ mode, initialData }: CitizenFormProps) {
           <form.Field name="statusDalamKeluarga">
             {(field) => (
               <FamilyRoleSelectField
-                value={field.state.value ?? ""}
+                value={field.state.value}
                 onChange={(v) => field.handleChange(v)}
                 disabled={isBusy}
               />
