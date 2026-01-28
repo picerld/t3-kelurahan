@@ -12,12 +12,15 @@ import {
 import { cn } from "@/lib/utils";
 import { useAccessoriess } from "./citizen-provider";
 import type { Citizen } from "@/types/citizen";
+import { useRouter } from "next/navigation";
 
 type DataTableRowActionsProps = {
   row: Row<Citizen>;
 };
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
+  const router = useRouter();
+  
   const { setOpen, setCurrentRow } = useAccessoriess();
 
   return (
@@ -59,8 +62,7 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
         <DropdownMenuItem
           className="flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium hover:bg-accent"
           onClick={() => {
-            setCurrentRow(row.original);
-            setOpen("edit");
+            router.push(`/citizens/edit/${row.original.id}`);
           }}
         >
           Edit

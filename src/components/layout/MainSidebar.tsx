@@ -84,8 +84,11 @@ export function MainSidebar() {
   const pathname = usePathname();
   const { logout, logoutLoading } = useGuarded();
 
-  const isActive = (href?: string) =>
-    href ? pathname === href || pathname.startsWith(href + "/") : false;
+  const isActive = (href?: string, exact = false) => {
+    if (!href) return false;
+    if (exact) return pathname === href;
+    return pathname === href || pathname?.startsWith(href + "/");
+  };
 
   return (
     <div className="h-full flex flex-col gap-[50px]">

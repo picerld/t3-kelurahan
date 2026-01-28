@@ -5,6 +5,10 @@ export type Citizen = {
     email: string;
     jenisKelamin: string;
     kewarganegaraan: string;
+    agama: string,
+    pekerjaan: string,
+    pendidikan: string,
+    statusPerkawinan: string,
     noHp: string;
     statusDalamKeluarga: string;
     tanggalLahir: Date;

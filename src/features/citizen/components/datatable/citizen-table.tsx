@@ -138,8 +138,6 @@ export function CitizenTable() {
     { refetchOnWindowFocus: false }
   );
 
-  console.log(data);
-
   const tableData: Citizen[] =
     data?.items?.map((item) => ({
       ...item,

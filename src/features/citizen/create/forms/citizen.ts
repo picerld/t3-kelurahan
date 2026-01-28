@@ -24,7 +24,22 @@ export const citizenFormSchema = z.object({
         "KONGHUCU",
         "LAINNYA",
     ]),
-    pekerjaan: z.string().optional(),
+    pekerjaan: z.enum([
+        "BELUM_TIDAK_BEKERJA",
+        "PELAJAR_MAHASISWA",
+        "IRT",
+        "PNS",
+        "TNI",
+        "POLRI",
+        "KARYAWAN_SWASTA",
+        "WIRASWASTA",
+        "PETANI",
+        "NELAYAN",
+        "BURUH",
+        "PENSIUNAN",
+        "LAINNYA",
+    ]),
+
     pendidikan: z.enum([
         "TIDAK_SEKOLAH",
         "SD",
